@@ -134,7 +134,7 @@ class FrontendApp extends React.Component {
           if (this.state.profile_edit) {
                this.setState({ profile_edit: false, inform: "" });
           }
-          axios.get( process.env.PORT +"/conversation", {
+          axios.get( process.env +"/conversation", {
                headers: {
                     token: window.localStorage.getItem("token"),
                     hisemail: email
@@ -195,7 +195,7 @@ class FrontendApp extends React.Component {
           } else {
                color = this.state.me.color;
           }
-          axios.post( process.env.PORT +"/changecolorprofile", {
+          axios.post( process.env +"/changecolorprofile", {
                token: window.localStorage.getItem("token"),
                color: color
           })
@@ -242,7 +242,7 @@ class FrontendApp extends React.Component {
           } else {
                color = this.state.me.color;
           }
-          axios.post( process.env.PORT +"/changeprofile", {
+          axios.post( process.env +"/changeprofile", {
                token: window.localStorage.getItem("token"),
                firstname: firstname,
                lastname: lastname,
@@ -312,7 +312,7 @@ class FrontendApp extends React.Component {
                return;
           }
 
-          axios.post( process.env.PORT +"/addmessage", {
+          axios.post( process.env +"/addmessage", {
                token: window.localStorage.getItem("token"),
                hisemail: this.state.display,
                message: this.state.message
@@ -337,7 +337,7 @@ class FrontendApp extends React.Component {
                this.setState({ inform: "Passwords don't match!" });
                return;
           }
-          axios.post( process.env.PORT +"/register", {
+          axios.post( process.env +"/register", {
                username: this.state.username,
                email: this.state.email,
                firstname: this.state.firstname,
@@ -357,7 +357,7 @@ class FrontendApp extends React.Component {
      };
 
      tryLogin = () => {
-          axios.post( process.env.PORT +"/login", {
+          axios.post( process.env +"/login", {
                email: this.state.myEmail,
                password: this.state.password
           })
@@ -383,7 +383,7 @@ class FrontendApp extends React.Component {
      };
 
      sendFriendRequest = email => {
-          axios.post( process.env.PORT +"/sendfriendrequest", {
+          axios.post( process.env +"/sendfriendrequest", {
                token: window.localStorage.getItem("token"),
                email_target: email
           })
@@ -395,7 +395,7 @@ class FrontendApp extends React.Component {
                });
      };
      revokeFriendRequest = email => {
-          axios.post( process.env.PORT +"/revokefriendrequest", {
+          axios.post( process.env +"/revokefriendrequest", {
                token: window.localStorage.getItem("token"),
                email_target: email
           })
@@ -407,7 +407,7 @@ class FrontendApp extends React.Component {
                });
      };
      deniedFriendRequest = email => {
-          axios.post( process.env.PORT +"/deniedfriendrequest", {
+          axios.post( process.env +"/deniedfriendrequest", {
                token: window.localStorage.getItem("token"),
                email_target: email
           })
@@ -420,7 +420,7 @@ class FrontendApp extends React.Component {
                });
      };
      acceptFriendRequest = email => {
-          axios.post( process.env.PORT +"/acceptfriendrequest", {
+          axios.post( process.env +"/acceptfriendrequest", {
                token: window.localStorage.getItem("token"),
                email_target: email
           })
@@ -438,7 +438,7 @@ class FrontendApp extends React.Component {
                "You will delete this user from your friends list. Are you sure?"
           );
           if (confirmation) {
-               axios.post( process.env.PORT +"/removefriend", {
+               axios.post( process.env +"/removefriend", {
                     token: window.localStorage.getItem("token"),
                     email_target: email
                })
@@ -457,7 +457,7 @@ class FrontendApp extends React.Component {
                token = window.localStorage.getItem("token");
           }
           // console.log("trigger this.checkToken(); TOKEN.....>", token )
-          axios.post( process.env.PORT +"/checkToken", {
+          axios.post( process.env +"/checkToken", {
                token: token
           })
                .then(response => {

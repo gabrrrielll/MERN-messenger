@@ -182,7 +182,7 @@ const confirmToken = (req, res) => {
      User.updateOne({ email: myEmail }, { $set: { mail_confirm: true } })
           .then(data => {
                res.send(
-                    "Your account was activated! You must now login <a href ='http://localhost:3000/' ><b>here</b></a>"
+                    "Your account was activated! You must now login <a href ='https://mern-messenger.herokuapp.com/' ><b>here</b></a>"
                );
           })
           .catch(err => {
