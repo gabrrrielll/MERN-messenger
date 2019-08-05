@@ -143,7 +143,7 @@ const register = (req, res) => {
                          subject: "Account verification token",
                          text: "Please verify email, click on link",
                          html:
-                              "<p>For register on messenger, please click  <a href='http://localhost:4000/confirm/" +
+                              "<p>For register on messenger, please click  <a href='https://mern-messenger.herokuapp.com/confirm/" +
                               confirmToken +
                               "'><b>HERE</b></a> to verify your email.</p>"
                     };
