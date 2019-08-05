@@ -54,7 +54,7 @@ class FrontendApp extends React.Component {
           const socket = socketIOClient(this.state.endpoint);
 
           socket.on("usersAPI", users => {
-                 console.log("socket was connected and response:", process.env.PWD)
+                 console.log("socket was connected and response:")
                this.sortUsers(users, myEmail);
           });
           socket.on("fragmentAPI" + myEmail, data =>
@@ -484,6 +484,7 @@ class FrontendApp extends React.Component {
      }
 
      render() {
+          console.log( " process.env->",  process.env)
           return (
                <BrowserRouter>
                     {this.state.authorized ? (
