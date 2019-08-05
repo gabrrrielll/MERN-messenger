@@ -54,7 +54,7 @@ class FrontendApp extends React.Component {
           const socket = socketIOClient(this.state.endpoint);
 
           socket.on("usersAPI", users => {
-                 console.log("socket was connected and response:", users)
+                 console.log("socket was connected and response:", process.env.PORT)
                this.sortUsers(users, myEmail);
           });
           socket.on("fragmentAPI" + myEmail, data =>
