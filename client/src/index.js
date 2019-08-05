@@ -42,7 +42,7 @@ class FrontendApp extends React.Component {
                data: [],
                loaded: false,
                response: false,
-               endpoint: process.env.PORT || "http://localhost:4000"
+               endpoint: "https://mern-messenger.herokuapp.com/"
           };
 
           this.state = this.initialstate;
@@ -357,7 +357,7 @@ class FrontendApp extends React.Component {
      };
 
      tryLogin = () => {
-          axios.post( process.env +"/login", {
+          axios.post("/login", {
                email: this.state.myEmail,
                password: this.state.password
           })

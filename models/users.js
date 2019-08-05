@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
 const CONFIG = require('../config')
 //Make the connection with db throw mongoose
-mongoose.connect(CONFIG.DB_ADDRESS, { useNewUrlParser: true })
-								.then(data => {
-									console.log("Connected to DB")
-								})
-								.catch(err => {
-									console.log(err);
-								})
+mongoose
+	.connect(
+		CONFIG.DB_ADDRESS, { useNewUrlParser: true, useCreateIndex: true },
+	)
+	.then(data => {
+		console.log("Connected to DB")
+	})
+	.catch(err => {
+		console.log(err);
+	})
 //Extract the constructor schema
 var Schema = mongoose.Schema;
 
