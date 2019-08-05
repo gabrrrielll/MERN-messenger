@@ -12,19 +12,6 @@ class Profile extends Component {
           if (this.props.state.users) {
                var user = this.props.state.users.find(el => el.email === this.props.state.display);
           }
-          /*   if (user === undefined) {
-           
-            if(  this && this.props.state.sugestions  &&  this.props.state.friends.length === 0){
-              user= this.props.state.sugestions[0]
-             // this.props.display( this.props.state.sugestions[0].email);
-              // console.log("111user in profil:----------", user )
-              }
-              if( this && this.props.state.friends && this.props.state.friends.length > 0 ){
-                 user = this.props.state.friends[0]
-                // console.log("2222user in profil:----------", user )
-              }
-                // return <h3>Please select a user</h3>
-        } */
 
           function convertUNIX(input) {
                var time = new Date(input);
@@ -73,7 +60,9 @@ class Profile extends Component {
                     </div>
 
                     <img src={user && user.photo} alt={user && user.email} />
-                    <div className="tel">Phone: {user && user.tel}</div>
+                    { user && user.tel ?
+                    <div className="tel">Phone: { user.tel}</div> :
+                    null }
                     <div className="email">Email: {user && user.email}</div>
 
                     {this.props.state.display === this.props.state.me.email ? (
