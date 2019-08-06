@@ -42,7 +42,7 @@ class FrontendApp extends React.Component {
                data: [],
                loaded: false,
                response: false,
-               endpoint: "https://mern-messenger.herokuapp.com/"
+               endpoint:"https://mern-messenger.herokuapp.com/"
           };
 
           this.state = this.initialstate;
@@ -75,11 +75,11 @@ class FrontendApp extends React.Component {
           }
           // console.log("triger the sortUsers = ( users, myEmail  ):->", users, myEmail )
           if (users) {
-               var me = users.find(el => el.email === myEmail);
+               var me = users.find(el => el.email === myEmail );
                var sugestions =
                     me &&
                     users
-                         .filter(user => user.email !== me.email)
+                         .filter(user => user.email !==  myEmail )
                          .filter(el => el.email !== me.friends.find(email => email === el.email))
                          .filter(
                               elem =>
@@ -113,6 +113,7 @@ class FrontendApp extends React.Component {
 
           this.setState({
                users,
+               myEmail,
                me,
                sugestions,
                friends,
@@ -131,10 +132,30 @@ class FrontendApp extends React.Component {
      display = email => {
        // function which set what conversation will be displayed in center
           // console.log("display-->email: ", email)
+          var left = document.getElementById("left");
+          var center = document.getElementById("center");
+          var right = document.getElementById("right");
+          if(   window.innerWidth < 768 ){
+             if ( center.style.display === "none"  ) {
+                    left.style.display = "none";
+                    center.style.display = "block";
+                    right.style.display = "none";
+                } else {
+                    left.style.display = "block";
+                    center.style.display = "none";
+                    right.style.display = "none";
+                }
+   
+          } else {
+               left.style.display = "block";
+               center.style.display = "block";
+               right.style.display = "block";
+           }
+
           if (this.state.profile_edit) {
                this.setState({ profile_edit: false, inform: "" });
           }
-          axios.get( "/conversation", {
+          axios.get(  "/conversation", {
                headers: {
                     token: window.localStorage.getItem("token"),
                     hisemail: email
@@ -195,7 +216,7 @@ class FrontendApp extends React.Component {
           } else {
                color = this.state.me.color;
           }
-          axios.post( "/changecolorprofile", {
+          axios.post(  "/changecolorprofile", {
                token: window.localStorage.getItem("token"),
                color: color
           })
@@ -285,15 +306,47 @@ class FrontendApp extends React.Component {
                elmnt.scrollTop = elmnt.scrollHeight;
           }
      };
-     showProfile = () => {
+     showMobileBack = () => {
        // function for displaying the user profile
           this.setState({
-               show: !this.state.show,
-               display: this.state.me.email
+               show: !this.state.show
+              
           });
+          var left = document.getElementById("left");
+          var center = document.getElementById("center");
+          var right = document.getElementById("right");
+          if ( left.style.display === "none"  ) {
+               left.style.display = "block";
+               center.style.display = "none";
+               right.style.display = "none";
+           } else {
+               left.style.display = "none";
+               center.style.display = "block";
+               right.style.display = "none";
+           }
      };
      editProfile = () => {
        // function for edit the user's dates
+       var left = document.getElementById("left");
+       var center = document.getElementById("center");
+       var right = document.getElementById("right");
+       if(   window.innerWidth < 768 ){
+          if ( right.style.display === "none"  ) {
+                 left.style.display = "none";
+                 center.style.display = "none";
+                 right.style.display = "block";
+             } else {
+                 left.style.display = "block";
+                 center.style.display = "none";
+                 right.style.display = "none";
+             }
+
+       } else {
+            left.style.display = "block";
+            center.style.display = "block";
+            right.style.display = "block";
+        }
+      
           this.setState({
                profile_edit: !this.state.profile_edit,
                display: this.state.me.email,
@@ -357,13 +410,12 @@ class FrontendApp extends React.Component {
      };
 
      tryLogin = () => {
-          axios.post("/login", {
+          axios.post( "/login", {
                email: this.state.myEmail,
                password: this.state.password
           })
                .then(response => {
                     if (response.data.token && this.state.myEmail === response.data.myEmail) {
-                         this.secretToken = response.data.token;
                          window.localStorage.setItem("token", response.data.token);
 
                          this.setState({
@@ -438,7 +490,7 @@ class FrontendApp extends React.Component {
                "You will delete this user from your friends list. Are you sure?"
           );
           if (confirmation) {
-               axios.post( "/removefriend", {
+               axios.post(  "/removefriend", {
                     token: window.localStorage.getItem("token"),
                     email_target: email
                })
@@ -457,7 +509,7 @@ class FrontendApp extends React.Component {
                token = window.localStorage.getItem("token");
           }
           // console.log("trigger this.checkToken(); TOKEN.....>", token )
-          axios.post( "/checkToken", {
+          axios.post("/checkToken", {
                token: token
           })
                .then(response => {
@@ -484,7 +536,7 @@ class FrontendApp extends React.Component {
      }
 
      render() {
-        
+        console.log( "window.innerWidth->", window.innerWidth)
           return (
                <BrowserRouter>
                     {this.state.authorized ? (
@@ -501,7 +553,7 @@ class FrontendApp extends React.Component {
                               path="/"
                               render={props => (
                                    <Messenger
-                                        loadData={this.loadData}
+                                      /*   loadData={this.loadData} */
                                         logout={this.logout}
                                         display={this.display}
                                         state={this.state}
@@ -512,7 +564,7 @@ class FrontendApp extends React.Component {
                                         deniedFriendRequest={this.deniedFriendRequest}
                                         acceptFriendRequest={this.acceptFriendRequest}
                                         removeFriend={this.removeFriend}
-                                        showProfile={this.showProfile}
+                                        showMobileBack={this.showMobileBack}
                                         editProfile={this.editProfile}
                                         profileChange={this.profileChange}
                                         scrollUP={this.scrollUP}

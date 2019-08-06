@@ -278,6 +278,11 @@ input[type="text"]:placeholder {
      margin: 20px;
      color: #56baed;
 }
+#edit-profile .fa-user {
+     font-size: 28px;
+     color:#fff;
+     margin: 10px 0px 20px 0;
+}
 p.underlineHover {
      cursor: pointer;
 }
@@ -292,27 +297,29 @@ p.underlineHover {
      overflow: hidden;
 }
 
-.left,
-.right {
+#left,
+#right {
      width: 25%;
      border: 1px solid #ccc;
      height: 100%;
      background: rgba(0, 123, 255, 0.05);
 }
 @media (max-width: 991px) {
-     .left,
-     .right {
+     #left,
+     #right {
           width: 35%;
      }
 }
-.left {
+#left {
      min-width: 280px;
 }
+  
+
 .users {
      height: 100%;
-     overflow: auto;
+     overflow: scroll;
 }
-.center {
+#center {
      width: 50%;
      height: 100%;
      text-align: center;
@@ -324,11 +331,15 @@ p.underlineHover {
      width: 100%;
      top: 0;
 }
-
+table.right-side {
+     float: right;
+ }
 #logout {
-     background: #4b4b4b;
-     margin: 10px 20px;
-}
+     background: #4b4b4ba6;
+     margin: -10px 20px 20px 0px;
+     font-size: 13px;
+     box-shadow: 3px 3px 5px 2px #00000061;
+ }
 .box {
      display: flex;
 
@@ -494,7 +505,7 @@ button {
 .user.request .message_fragment {
      width: 60%;
 }
-.right-side {
+#right-side {
      float: right;
 }
 
@@ -596,15 +607,15 @@ span#profile {
 }
 span#counter {
      position: relative;
-     top: -15px;
-     right: 9px;
-     font-size: 16px;
-     background: white;
+     top: -35px;
+     right: 5px;
+     font-size: 12px;
+     background: #ffffffa3;
      border-radius: 50%;
-     line-height: 20px;
+     /* line-height: 6px; */
      text-align: center;
      padding: 0px 5px;
-}
+ }
 .alert-inform {
      cursor: pointer;
      background: #ff9200c2;
@@ -695,3 +706,42 @@ span#edit-profile {
  div#388{
 background: red;
  }
+ .head .arrow {
+     display: none;
+ }
+/* --------mobile-------------------- */
+@media (max-width: 768px) {
+    
+    
+     #left {
+          width: 100%;
+          min-width:  unset;
+          position: absolute;
+          left: 0;
+          top: 50px;
+     }
+     #center {
+          width: 100%;
+          min-width:   unset;
+          position: absolute;
+          left: 0;
+          top: 50px;
+          display: none;
+     }
+      #right {
+          width: 100%;
+          min-width:   unset;
+          position: absolute;
+          left: 0;
+          top: 50px;
+          display: none;
+          z-index: 3;
+          background-color: #f8f9fa;
+     }
+     .head .arrow {
+          display: inline;
+          color: #ffffff;
+          margin: 16px;
+          font-size: 20px;
+      }
+} 

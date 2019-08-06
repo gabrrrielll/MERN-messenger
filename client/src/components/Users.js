@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserPlus, faUserTimes, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 
 
 class Users extends Component {
@@ -113,9 +115,7 @@ class Users extends Component {
                       title="Accept friendship request "
                       style={{ backgroundColor: this.props.state.me.color+"cc" }}
                 >
-                  <span role="img" aria-label="Check">
-                    ✅ ?
-                  </span>
+                   ? <FontAwesomeIcon icon={ faUserCheck } />
                 </button>
                 <button
                   className="addFriend"
@@ -124,10 +124,7 @@ class Users extends Component {
                   title="Denied friendship request"
                   style={{ backgroundColor: this.props.state.me.color+"cc" }}
                 >
-                  <span role="img" aria-label="Delete">
-                    ❌
-                  </span>
-                  ?
+                  ? <FontAwesomeIcon icon={ faUserTimes } />
                 </button>
               </div>
             );
@@ -157,9 +154,8 @@ class Users extends Component {
                                           onClick={() => this.props.removeFriend(user.email)}
                                           style={{ backgroundColor: this.props.state.me.color+"cc" }}
                                       >
-                                        <span role="img" aria-label="Delete">
-                                          ❌
-                                        </span>
+                                     <FontAwesomeIcon icon={ faUserTimes } /> 
+                                   
                                       </button>
                                     </div>
                                       ); } else return null
@@ -196,7 +192,7 @@ class Users extends Component {
                                         title="Send friendship request"
                                         onClick={() => this.props.sendFriendRequest(user.email)}
                                         style={{ backgroundColor: this.props.state.me.color+"cc" }}>
-                                        Send
+                                        <FontAwesomeIcon icon={ faUserPlus } />
                                 </button>
                               ) : (
                                 <button
@@ -204,7 +200,7 @@ class Users extends Component {
                                         title="Revoke friendship request"
                                         onClick={() => this.props.revokeFriendRequest(user.email)}
                                         style={{ backgroundColor: this.props.state.me.color+"cc" }} >
-                                        x
+                                         <FontAwesomeIcon icon={ faUserTimes } />
                                 </button>
                       )}
               </div>

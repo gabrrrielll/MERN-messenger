@@ -50,7 +50,7 @@ const checkToken = (req, res) => {
                myEmail = payload.email;
                setLastActivity(myEmail);
                convFragment(myEmail);
-               sendData(myEmail);
+               sendData();
           }
      });
 };
@@ -68,7 +68,8 @@ const sendData = () => {
 const loadSocket = () => {
      CONFIG.io.on("connection", socket => {
           // connect the sockets for live emissions
-          console.log("New client connected", socket.id, myEmail), sendData();
+          console.log("New client connected", socket.id);
+           sendData();
           convFragment(myEmail);
 
           socket.on("disconnect", () => console.log("Client disconnected"));

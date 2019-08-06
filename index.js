@@ -9,7 +9,7 @@ const path = require( 'path' );
 CONFIG.app.use(cors());
 CONFIG.app.use(parser.json());
 CONFIG.app.use('/', routes);
-console.log("process.env:" , process.env )
+//console.log("process.env:" , process.env )
 
 if ( process.env.NODE_ENV === 'production' ){
       CONFIG.app.use( express.static( 'client/build' ) );

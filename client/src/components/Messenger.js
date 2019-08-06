@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Users from "./Users";
 import Profile from "./Profile";
 import Message from "./Message";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 class Messenger extends Component {
      keyEnter = e => {
@@ -11,26 +13,35 @@ class Messenger extends Component {
           }
      };
 
-     render() {
+     render() { 
           return (
                <div id="block">
                     <div className="head" style={{ backgroundColor: this.props.state.me.color }}>
-                         <table className="right-side">
+                         { window.innerWidth < 768 ? 
+                               <FontAwesomeIcon  className="arrow" icon={ faArrowLeft }
+                               onClick={this.props.showMobileBack} /> :
+                                null}
+                               <table className="right-side">
                               <tbody>
                                    <tr>
                                         <td>
                                              <span
-                                                  role="img"
-                                                  aria-label="Edit"
                                                   title="Edit your profile"
                                                   id="edit-profile"
                                                   onClick={this.props.editProfile}
                                              >
-                                                  ⚙
+                                               <FontAwesomeIcon icon={ faUser } />
+                                               <span id="counter" title="Friends requests">
+                                                       {this.props.state.me && this.props.state.me.friends_requests ? (
+                                                            this.props.state.me.friends_requests.length
+                                                       ) : (
+                                                            <span>0</span>
+                                                       )}
+                                                  </span>
                                              </span>
                                         </td>
-                                        <td>
-                                             <span role="img" aria-label="Profile" title="Profile" id="profile" onClick={this.props.showProfile}>
+                                       {/*  <td>
+                                             <span role="img" aria-label="Profile" title="Profile" id="profile" onClick={this.props.showMobileBack}>
                                                   {" "}
                                                   👨‍🔧
                                                   <span id="counter" title="Friends requests">
@@ -41,7 +52,7 @@ class Messenger extends Component {
                                                        )}
                                                   </span>
                                              </span>
-                                        </td>
+                                        </td> */}
                                         <td>
                                              <button id="logout" onClick={this.props.logout}>
                                                   Log Out
@@ -52,7 +63,7 @@ class Messenger extends Component {
                          </table>
                     </div>
                     <div className="box">
-                         <div className="left">
+                         <div id="left">
                               <Users
                                    display={this.props.display}
                                    state={this.props.state}
@@ -63,7 +74,7 @@ class Messenger extends Component {
                                    removeFriend={this.props.removeFriend}
                               />
                          </div>
-                         <div className="center" id="scroll">
+                         <div id="center" >
                               <Message
                                    state={this && this.props.state}
                                    updateData={this.props.updateData}
@@ -101,10 +112,10 @@ class Messenger extends Component {
                                    </div>
                               ) : null}
                          </div>
-                         <div className="right">
+                         <div id="right">
                               <Profile
                                    state={this.props.state}
-                                   showProfile={this.props.showProfile}
+                                   showMobileBack={this.props.showMobileBack}
                                    display={this.props.display}
                                    setColor={this.props.setColor}
                                    updateData={this.props.updateData}
