@@ -140,16 +140,19 @@ class FrontendApp extends React.Component {
                     left.style.display = "none";
                     center.style.display = "block";
                     right.style.display = "none";
+                    this.setState( { show: true })
                 } else {
                     left.style.display = "block";
                     center.style.display = "none";
                     right.style.display = "none";
+                    this.setState( { show: false })
                 }
    
           } else {
                left.style.display = "block";
                center.style.display = "block";
                right.style.display = "block";
+               this.setState( { show: true })
            }
 
           if (this.state.profile_edit) {
@@ -308,10 +311,7 @@ class FrontendApp extends React.Component {
      };
      showMobileBack = () => {
        // function for displaying the user profile
-          this.setState({
-               show: !this.state.show
-              
-          });
+          
           var left = document.getElementById("left");
           var center = document.getElementById("center");
           var right = document.getElementById("right");
@@ -319,10 +319,12 @@ class FrontendApp extends React.Component {
                left.style.display = "block";
                center.style.display = "none";
                right.style.display = "none";
+               this.setState( { show: false })
            } else {
                left.style.display = "none";
                center.style.display = "block";
                right.style.display = "none";
+               this.setState( { show: true })
            }
      };
      editProfile = () => {

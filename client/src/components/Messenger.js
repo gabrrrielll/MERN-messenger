@@ -13,14 +13,35 @@ class Messenger extends Component {
           }
      };
 
+      findUser = ( y ) =>{
+          if( this.props.state.users ){
+                var user =  this.props.state.users.find( el => el.email === y  ) ;
+               // console.log(" find user->", user)
+                return user
+          }
+    }
+
      render() { 
           return (
                <div id="block">
                     <div className="head" style={{ backgroundColor: this.props.state.me.color }}>
                          { window.innerWidth < 768 ? 
+                               (< >
                                <FontAwesomeIcon  className="arrow" icon={ faArrowLeft }
-                               onClick={this.props.showMobileBack} /> :
-                                null}
+                               onClick={this.props.showMobileBack} />
+                                        { this.props.state.display &&
+                                          this.props.state.show ?
+                                        (<>
+                                        <img className="header-photo" 
+                                                  src={this.findUser(this.props.state.display).photo} 
+                                                  alt={this.findUser(this.props.state.display).username} /> 
+                                        <div className="user-name" style={{ top: "17px", left: "80px", color: "#fff" }}>
+                                             {this.findUser(this.props.state.display).firstname} {this.findUser(this.props.state.display).lastname}
+                                        </div>
+                                        </>): null }
+                                        
+                                        </>) :
+                                        null}
                                <table className="right-side">
                               <tbody>
                                    <tr>
@@ -40,19 +61,7 @@ class Messenger extends Component {
                                                   </span>
                                              </span>
                                         </td>
-                                       {/*  <td>
-                                             <span role="img" aria-label="Profile" title="Profile" id="profile" onClick={this.props.showMobileBack}>
-                                                  {" "}
-                                                  👨‍🔧
-                                                  <span id="counter" title="Friends requests">
-                                                       {this.props.state.me && this.props.state.me.friends_requests ? (
-                                                            this.props.state.me.friends_requests.length
-                                                       ) : (
-                                                            <span>0</span>
-                                                       )}
-                                                  </span>
-                                             </span>
-                                        </td> */}
+                                    
                                         <td>
                                              <button id="logout" onClick={this.props.logout}>
                                                   Log Out
@@ -82,8 +91,7 @@ class Messenger extends Component {
                                    profileChange={this.props.profileChange}
                               />
 
-                              {//  !this.props.state.profile_edit ||
-
+                              {
                               this.props.state.me &&
                               this.props.state.me.friends &&
                               this.props.state.me.friends.some(el => el === this.props.state.display) ? (
