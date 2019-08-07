@@ -334,11 +334,11 @@ p.underlineHover {
 table.right-side {
      float: right;
  }
-#logout {
-     background: #4b4b4ba6;
-     margin: -10px 20px 20px 0px;
-     font-size: 13px;
-     box-shadow: 3px 3px 5px 2px #00000061;
+ #logout {
+     margin: 7px 14px 21px 1px;
+     font-size: 28px;
+     color: #fff; 
+    cursor: pointer;
  }
 .box {
      display: flex;
@@ -776,13 +776,12 @@ background: red;
       }
       .head .last-activity {
           /* margin-top: 10px; */
-          font-weight: 500;
-          font-size: 12px;
-          color: #6c757de3;
+          font-weight: 600;
+          font-size: 13px;
+          color: #f7f8f8c2;
           position: absolute;
-          top: 20px;
+          top: 18px;
           left: 79px;
-          letter-spacing: -1px;
       }
       .head span#online-bullet img {
           position: absolute;

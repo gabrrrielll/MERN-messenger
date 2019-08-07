@@ -3,7 +3,7 @@ import Users from "./Users";
 import Profile from "./Profile";
 import Message from "./Message";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faArrowLeft, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 class Messenger extends Component {
      keyEnter = e => {
@@ -24,7 +24,7 @@ class Messenger extends Component {
      render() { 
           function convertUNIX(input) {
                var time = new Date(input);
-               var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+               var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
                return /* time.toLocaleDateString('en-EN', options) + "\n" + */ time.toLocaleTimeString('en-EN', options);
           }
           return (
@@ -51,11 +51,11 @@ class Messenger extends Component {
                                                        <span id="online-bullet">
                                                             <img
                                                                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Button_Icon_Green.svg/768px-Button_Icon_Green.svg.png"
-                                                                 alt=" Active now"
-                                                                 title=" Active now"
+                                                                 alt=" Active Now"
+                                                                 title=" Active Now"
                                                             />
                                                        </span>
-                                                       Active now
+                                                       Active Now
                                                   </div>
                                              ) : (
                                                   <div className="last-activity">
@@ -88,10 +88,9 @@ class Messenger extends Component {
                                              </span>
                                         </td>
                                     
-                                        <td>
-                                             <button id="logout" onClick={this.props.logout}>
-                                                  Log Out
-                                             </button>
+                                        <td> 
+                                             <FontAwesomeIcon   id="logout" icon={ faSignOutAlt }
+                                                  onClick={this.props.logout}/>
                                         </td>
                                    </tr>
                               </tbody>
