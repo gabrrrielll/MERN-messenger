@@ -92,7 +92,7 @@ const Register = props => {
                                              id="photo"
                                              className="fadeIn second"
                                              name="photo"
-                                             placeholder="Photo"
+                                             placeholder="Photo URL"
                                              onChange={props.updateData}
                                         />
                                    </td>

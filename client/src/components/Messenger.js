@@ -22,6 +22,11 @@ class Messenger extends Component {
     }
 
      render() { 
+          function convertUNIX(input) {
+               var time = new Date(input);
+               var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+               return /* time.toLocaleDateString('en-EN', options) + "\n" + */ time.toLocaleTimeString('en-EN', options);
+          }
           return (
                <div id="block">
                     <div className="head" style={{ backgroundColor: this.props.state.me.color }}>
@@ -35,9 +40,30 @@ class Messenger extends Component {
                                         <img className="header-photo" 
                                                   src={this.findUser(this.props.state.display).photo} 
                                                   alt={this.findUser(this.props.state.display).username} /> 
-                                        <div className="user-name" style={{ top: "17px", left: "80px", color: "#fff" }}>
+                                        <div className="user-name" style={{ top: "10px", left: "80px", color: "#fff" }}>
                                              {this.findUser(this.props.state.display).firstname} {this.findUser(this.props.state.display).lastname}
                                         </div>
+
+                                        {this.findUser(this.props.state.display) &&
+                                         this.findUser(this.props.state.display).last_activity && 
+                                         Date.now() - this.findUser(this.props.state.display).last_activity < 120000 ? (
+                                                  <div className="last-activity">
+                                                       <span id="online-bullet">
+                                                            <img
+                                                                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Button_Icon_Green.svg/768px-Button_Icon_Green.svg.png"
+                                                                 alt=" Active now"
+                                                                 title=" Active now"
+                                                            />
+                                                       </span>
+                                                       Active now
+                                                  </div>
+                                             ) : (
+                                                  <div className="last-activity">
+                                                       {this.findUser(this.props.state.display) && 
+                                                            convertUNIX(this.findUser(this.props.state.display).last_activity)} 
+                                                  </div>
+                                             )}
+
                                         </>): null }
                                         
                                         </>) :
@@ -104,6 +130,7 @@ class Messenger extends Component {
                                              onChange={this.props.updateData}
                                              id="message"
                                              name="message"
+                                             autoComplete="off"
                                              value={this.props.state.message}
                                              onKeyDown={this.keyEnter}
                                         />
