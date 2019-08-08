@@ -78,13 +78,17 @@ class Messenger extends Component {
                                                   onClick={this.props.editProfile}
                                              >
                                                <FontAwesomeIcon icon={ faUser } />
-                                               <span id="counter" title="Friends requests">
-                                                       {this.props.state.me && this.props.state.me.friends_requests ? (
-                                                            this.props.state.me.friends_requests.length
-                                                       ) : (
-                                                            <span>0</span>
-                                                       )}
-                                                  </span>
+                                              
+                                                       {
+                                                       this.props.state.me && 
+                                                       this.props.state.me.friends_requests &&
+                                                       this.props.state.me.friends_requests.length > 0 ? 
+                                                         ( <span id="counter" title="Friends requests">
+                                                                 {this.props.state.me.friends_requests.length}
+                                                            </span> 
+                                                       ) : null
+                                                       }
+                                                  
                                              </span>
                                         </td>
                                     

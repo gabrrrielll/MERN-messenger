@@ -412,7 +412,7 @@ class FrontendApp extends React.Component {
      };
 
      tryLogin = () => {
-          axios.post( "/login", {
+          axios.post( "http://localhost:4000/login", {
                email: this.state.myEmail,
                password: this.state.password
           })

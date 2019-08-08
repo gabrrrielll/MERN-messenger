@@ -279,7 +279,7 @@ input[type="text"]:placeholder {
      color: #56baed;
 }
 #edit-profile .fa-user {
-     font-size: 28px;
+     font-size: 30px;
      color:#fff;
      margin: 10px 0px 20px 0;
 }
@@ -317,7 +317,7 @@ p.underlineHover {
 
 .users {
      height: 100%;
-     overflow: scroll;
+     overflow-Y: scroll
 }
 #center {
      width: 50%;
@@ -452,7 +452,7 @@ table.right-side {
      min-width: 150px;
      border-left: 1px solid #ccc;
      right: 0;
-     overflow: auto;
+     overflow-Y: scroll;
 }
 
 .profile .name {
@@ -789,5 +789,14 @@ background: red;
           left: -20px;
           width: 10px;
           height: 10px;
+      }
+      #intermediate {
+          height: calc(100% - 60px);
+      }
+      div#inputMessage { 
+          height:  60px;
+      }
+      input#message-submit {
+          display: none;
       }
 } 
