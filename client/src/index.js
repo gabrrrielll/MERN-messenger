@@ -42,7 +42,7 @@ class FrontendApp extends React.Component {
                data: [],
                loaded: false,
                response: false,
-               endpoint:"https://mern-messenger.herokuapp.com/"
+               endpoint:"/"
           };
 
           this.state = this.initialstate;
