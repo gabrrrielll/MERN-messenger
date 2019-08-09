@@ -70,7 +70,7 @@ class Messenger extends Component {
 
                                         {this.findUser(this.props.state.display) &&
                                          this.findUser(this.props.state.display).last_activity && 
-                                         Date.now() - this.findUser(this.props.state.display).last_activity < 9960000 ? (
+                                         Date.now() - this.findUser(this.props.state.display).last_activity < 180000 ? (
                                                   <div className="last-activity">
                                                        <span id="online-bullet">
                                                             <img
