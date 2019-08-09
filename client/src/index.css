@@ -331,14 +331,20 @@ p.underlineHover {
      width: 100%;
      top: 0;
 }
-table.right-side {
+.right-side {
      float: right;
+     width: 20%;
  }
  #logout {
      margin: 7px 14px 21px 1px;
      font-size: 28px;
      color: #fff; 
     cursor: pointer;
+ }
+ table {
+     border-collapse: collapse;
+     max-width: unset;
+     width: 100%;
  }
 .box {
      display: flex;
@@ -366,6 +372,9 @@ table.right-side {
      text-overflow: ellipsis;
      white-space: nowrap;
 }
+.edit-profile {
+     padding-top: 20px;
+ }
 .user-alert {
      text-align: left;
      cursor: pointer;
@@ -375,7 +384,7 @@ table.right-side {
 
      display: flex;
      justify-content: space-between;
-     background: linear-gradient(270deg, #e40e3857, #0ca5499d, #0a1fdf32);
+     background: linear-gradient(270deg, #e40e39dc, #b2fb06, #0a1fdfbe);
      background-size: 600% 600%;
 
      -webkit-animation: alarm 2s ease infinite;
@@ -486,7 +495,7 @@ button {
      box-shadow: 2px 3px 4px 1px #6c757d42;
 }
 .user.request {
-     background: #ff9200c2;
+    /*  background: #ff9200c2; */
      color: white;
      border-bottom: 1px solid grey;
      display: flex;
@@ -633,7 +642,13 @@ span#counter {
      font-size: 16px;
      color: rgb(13, 127, 180);
 }
-
+.first #active-bullet {
+     position: absolute;
+     width: 11px!important;
+     height: 11px!important;
+     top: 28px;
+     left: 29px;
+ }
 #inform {
      width: 93%;
      background: orange;
@@ -709,6 +724,9 @@ background: red;
  .head .arrow {
      display: none;
  }
+ svg.svg-inline--fa.fa-user-times.fa-w-20 {
+     color: red!important;
+ }
 /* --------mobile-------------------- */
 @media (max-width: 768px) {
     
@@ -752,6 +770,7 @@ background: red;
           height: 33px;
           border-radius: 50%;
           margin: -19px 0 16px -9px;
+          cursor: pointer;
       }
       input[type=text] {
           background-color: #f6f6f6;

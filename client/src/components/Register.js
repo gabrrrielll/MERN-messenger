@@ -10,17 +10,7 @@ const Register = props => {
                     <table>
                          <tbody>
                               <tr>
-                                   <td>
-                                        <input
-                                             type="text"
-                                             id="username"
-                                             className="fadeIn second"
-                                             name="username"
-                                             placeholder="Username"
-                                             onChange={props.updateData}
-                                        />
-                                   </td>
-                                   <td>
+                                   <td  colSpan="2">
                                         <input
                                              type="text"
                                              id="email"

@@ -333,14 +333,14 @@ class FrontendApp extends React.Component {
        var center = document.getElementById("center");
        var right = document.getElementById("right");
        if(   window.innerWidth < 768 ){
-          if ( right.style.display === "none"  ) {
+          if ( right.style.display === "block"  ) {
+                 left.style.display = "none";
+                 center.style.display = "block";
+                 right.style.display = "none";
+             } else {
                  left.style.display = "none";
                  center.style.display = "none";
                  right.style.display = "block";
-             } else {
-                 left.style.display = "block";
-                 center.style.display = "none";
-                 right.style.display = "none";
              }
 
        } else {
@@ -350,7 +350,7 @@ class FrontendApp extends React.Component {
         }
       
           this.setState({
-               profile_edit: !this.state.profile_edit,
+               profile_edit: true,
                display: this.state.me.email,
                inform: " If you don't want change your password, just leave the fields empty"
           });
@@ -393,7 +393,6 @@ class FrontendApp extends React.Component {
                return;
           }
           axios.post( "/register", {
-               username: this.state.username,
                email: this.state.email,
                firstname: this.state.firstname,
                lastname: this.state.lastname,
@@ -412,7 +411,7 @@ class FrontendApp extends React.Component {
      };
 
      tryLogin = () => {
-          axios.post( "http://localhost:4000/login", {
+          axios.post( "/login", {
                email: this.state.myEmail,
                password: this.state.password
           })
@@ -538,7 +537,7 @@ class FrontendApp extends React.Component {
      }
 
      render() {
-        console.log( "window.innerWidth->", window.innerWidth)
+       
           return (
                <BrowserRouter>
                     {this.state.authorized ? (

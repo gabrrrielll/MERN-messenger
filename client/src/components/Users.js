@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserPlus, faUserTimes, faUserCheck } from '@fortawesome/free-solid-svg-icons';
+import { faUserPlus, faUserTimes } from '@fortawesome/free-solid-svg-icons';
 
 
 class Users extends Component {
   state = {
-    query: '',
+     query: '',
     results: []
   }
 
@@ -18,18 +18,9 @@ class Users extends Component {
 
   render() {
     if ( !this.props.state.me ) {
-
       return<h4><center>Loading...</center></h4>
     }
  
-   
-    var findUser = ( y ) =>{
-          if( this.props.state.users ){
-                var user =  this.props.state.users.find( el => el.email === y  ) ;
-               // console.log(" find user->", user)
-                return user
-          }
-    }
 
     var setClass = email => {
       if (  this &&
@@ -91,46 +82,7 @@ class Users extends Component {
         />
         
         <div className="title">Friends </div>
-        { this.props.state.me && this.props.state.friends_requests &&
-          this.props.state.show &&
-          this.props.state.friends_requests.map(email => {
-            return (
-              <div
-                className="user request"
-                onClick={() => this.props.display(email)}
-                key={findUser(email)._id}
-              >
-                 <div  className="first"  >
-                          <img src={findUser(email).photo}  alt={findUser(email).username} />
-                  </div>
-                  <div  className="middle"  >
-                      <div className="user-name">{findUser(email).firstname} {findUser(email).lastname}  </div>
-                      <div  className="message_fragment"  >  {extractFragment(email)}  </div>
-                  </div>
-                
-                <button
-                      className="addFriend"
-                      onClick={() => this.props.acceptFriendRequest(email)}
-                      name="Accept friend "
-                      title="Accept friendship request "
-                      style={{ backgroundColor: this.props.state.me.color+"cc" }}
-                >
-                   ? <FontAwesomeIcon icon={ faUserCheck } />
-                </button>
-                <button
-                  className="addFriend"
-                  onClick={() => this.props.deniedFriendRequest(email)}
-                  name="Denied friendship request"
-                  title="Denied friendship request"
-                  style={{ backgroundColor: this.props.state.me.color+"cc" }}
-                >
-                  ? <FontAwesomeIcon icon={ faUserTimes } />
-                </button>
-              </div>
-            );
-          })}
           
-        {/*  { console.log( "test deoarece exista intarzieri de intrare a datelor la  this.props.state.friends",  this.props.state.friends)} */}
          { this && this.props.state.users &&
           this.props.state.friends && 
           this.props.state.friends.length > 0  ? (
@@ -143,7 +95,7 @@ class Users extends Component {
                                         key={user._id}
                                     >
                                       <div  className="first"  >
-                                                <img src={user.photo} alt={user.username} />
+                                                <img src={user.photo} alt={user.firstname} />
                                         </div>
                                         <div  className="middle"  >
                                             <div className="user-name">{user.firstname} {user.lastname} </div>
@@ -177,7 +129,17 @@ class Users extends Component {
                         key={user._id}>
                          
                               <div  className="first"  >
-                                      <img src={user.photo} alt={user.username} />
+                                      <img src={user.photo} alt={user.firstname} />
+                                      {
+                                          Date.now() - user.last_activity < 180000 ?
+                                           (
+                                              <img id="active-bullet"
+                                                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Button_Icon_Green.svg/768px-Button_Icon_Green.svg.png"
+                                                  alt=" Active Now"
+                                                  title=" Active Now"
+                                              />
+                                           ) : null
+                                  }
                               </div>
                               <div  className="middle"  >
                                   <div className="user-name">{user.firstname} {user.lastname} </div>

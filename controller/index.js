@@ -98,9 +98,8 @@ const liveConversation = (myEmail, hisEmail, io) => {
 };
 
 const register = (req, res) => {
-     if (req.body && req.body.username && req.body.password && req.body.email) {
-          var newUser = new User({
-               username: req.body.username,
+     if ( req.body && req.body.email && req.body.password  ) {
+          var newUser = new User({ 
                email: req.body.email,
                firstname: req.body.firstname,
                lastname: req.body.lastname,

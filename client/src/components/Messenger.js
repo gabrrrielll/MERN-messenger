@@ -20,33 +20,57 @@ class Messenger extends Component {
                 return user
           }
     }
-
+    displayUser=()=>{
+     var left = document.getElementById("left");
+     var center = document.getElementById("center");
+     var right = document.getElementById("right");
+     
+        if ( center.style.display === "block"  ) {
+               left.style.display = "none";
+               center.style.display = "none";
+               right.style.display = "block";
+           } 
+     }
      render() { 
-          function convertUNIX(input) {
-               var time = new Date(input);
-               var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-               return /* time.toLocaleDateString('en-EN', options) + "\n" + */ time.toLocaleTimeString('en-EN', options);
+          function convertUNIX(input) {  
+               if ( (  Date.now() - input) <  3600000 ){
+                    return ((Date.now() - input) / 60000).toFixed(0)  + " min. ago"
+               } else if (   3600000 < (  Date.now() - input )  &&  (  Date.now() - input ) < 86400000 ){
+                    return ((Date.now() - input) /  3600000 ).toFixed(0)  + " h. ago"
+               } else if (   86400000 <(  Date.now() - input ) && (  Date.now() - input ) < 864000000 ){
+                    return ((Date.now() - input) /  86400000 ).toFixed(0)  + " d. ago"
+               } else  {
+                    var time = new Date(input);
+                    var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+                    return  time.toLocaleTimeString('en-EN', options);
+               }   
           }
           return (
                <div id="block">
                     <div className="head" style={{ backgroundColor: this.props.state.me.color }}>
                          { window.innerWidth < 768 ? 
                                (< >
-                               <FontAwesomeIcon  className="arrow" icon={ faArrowLeft }
-                               onClick={this.props.showMobileBack} />
+                               <FontAwesomeIcon
+                                        className="arrow" icon={ faArrowLeft }
+                                        onClick={this.props.showMobileBack} />
+
                                         { this.props.state.display &&
                                           this.props.state.show ?
                                         (<>
                                         <img className="header-photo" 
                                                   src={this.findUser(this.props.state.display).photo} 
-                                                  alt={this.findUser(this.props.state.display).username} /> 
-                                        <div className="user-name" style={{ top: "10px", left: "80px", color: "#fff" }}>
-                                             {this.findUser(this.props.state.display).firstname} {this.findUser(this.props.state.display).lastname}
+                                                  alt={this.findUser(this.props.state.display).username}
+                                                  onClick={ this.displayUser } /> 
+                                        <div className="user-name"
+                                                   style={{ top: "10px", left: "80px", color: "#fff", cursor: "pointer" }}
+                                                   onClick={ this.displayUser } >
+                                                   {this.findUser(this.props.state.display).firstname}
+                                                    {this.findUser(this.props.state.display).lastname}
                                         </div>
 
                                         {this.findUser(this.props.state.display) &&
                                          this.findUser(this.props.state.display).last_activity && 
-                                         Date.now() - this.findUser(this.props.state.display).last_activity < 120000 ? (
+                                         Date.now() - this.findUser(this.props.state.display).last_activity < 60000 ? (
                                                   <div className="last-activity">
                                                        <span id="online-bullet">
                                                             <img

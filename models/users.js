@@ -16,7 +16,6 @@ var Schema = mongoose.Schema;
 
 //Create the user with constrains
 var UserSchema = new Schema( {
-	username: { type: String, required: true, unique: true,  minlength: 3, maxlength: 50},
 	email: { type: String, required: true, unique: true,  minlength: 3, maxlength: 50 },
 	firstname: { type: String ,  minlength: 3, maxlength: 50},
 	lastname: { type: String ,  minlength: 3, maxlength: 50},

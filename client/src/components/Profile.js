@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-//import { ColorPicker } from 'react-input-color';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserTimes, faUserCheck } from '@fortawesome/free-solid-svg-icons';
 
 class Profile extends Component {
      render() {
@@ -30,14 +31,64 @@ class Profile extends Component {
           return (
                <div className="profile">
                     {this.props.state.friends_requests && this.props.state.friends_requests.length > 0 ? (
-                         <div className="alert-inform" onClick={this.props.showProfile}>
+                         <div className="alert-inform" >
                               <span role="img" aria-label="Notification" title="Notification">
                                    🔔
                               </span>
-                              You have {this.props.state.friends_requests.length} friendship requests! <br />
-                              Click to view
+                              You have {this.props.state.friends_requests.length} friendship requests!  
                          </div>
                     ) : null}
+
+{ this.props.state.me && this.props.state.friends_requests &&
+          this.props.state.friends_requests.map(email => {
+            return (
+              <div
+                className=" user user-alert request"
+                onClick={() => this.props.display(email)}
+                key={findUser(email)._id}
+              >
+                 <div  className="first"  >
+                          <img src={findUser(email).photo}  alt={findUser(email).firstname} />
+                          {
+                             Date.now() - findUser( email ).last_activity < 180000 ?
+                              (
+                                <img id="active-bullet"
+                                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Button_Icon_Green.svg/768px-Button_Icon_Green.svg.png"
+                                      alt=" Active Now"
+                                      title=" Active Now"
+                                />
+                              
+                              ) : null
+                          }
+                  </div>
+                  <div  className="middle"  >
+                      <div className="user-name">{findUser(email).firstname} {findUser(email).lastname}  </div>
+                     
+                  </div>
+                
+                <button
+                      className="addFriend"
+                      onClick={() => this.props.acceptFriendRequest(email)}
+                      name="Accept friend "
+                      title="Accept friendship request "
+                      style={{ backgroundColor: this.props.state.me.color+"cc" }}
+                >
+                   ? <FontAwesomeIcon icon={ faUserCheck } />
+                </button>
+                <button
+                  className="addFriend"
+                  onClick={() => this.props.deniedFriendRequest(email)}
+                  name="Denied friendship request"
+                  title="Denied friendship request"
+                  style={{ backgroundColor: this.props.state.me.color+"cc" }}
+                >
+                  ? <FontAwesomeIcon icon={ faUserTimes } />
+                </button>
+              </div>
+            );
+          })}
+
+
                     <div className="title">Profile</div>
 
                     {user && user.last_activity && Date.now() - user.last_activity < 120000 ? (
@@ -94,14 +145,17 @@ class Profile extends Component {
                     <div className="his-friends">
                          <div className="title">User's friends</div>
                          {user &&
-                              user.friends &&
+                              user.friends && this.props.state.users &&
                               user.friends
                                    .filter(em => em !== this.props.state.me.email)
-                                   .map(email => {
-                                        return (
-                                             <div className="user" onClick={() => this.props.display(email)} key={findUser(email)._id}>
+                                   .map((email, index) => {
+                                        if ( ! findUser(email)  ){
+                                             return null
+                                        }
+                                       return (
+                                             <div className="user" onClick={() => this.props.display(email)} key={index}>
                                                   <div className="first">
-                                                       <img className="friend-photo" src={findUser(email).photo} alt={findUser(email).username} />
+                                                       <img className="friend-photo" src={findUser(email).photo} alt={findUser(email).firstname} />
                                                   </div>
                                                   <div className="middle">
                                                        <div className="user-name" style={{ top: "18px" }}>

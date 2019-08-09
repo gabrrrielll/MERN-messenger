@@ -78,11 +78,5 @@ router.post("/checktoken", CONTROLLER.checkToken);
 router.post("/register", CONTROLLER.register);
 router.post("/login", CONTROLLER.login);
 
-var Se ="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxI ";
-/* var se = () => {
-  
-  return("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxI ");
 
-};   */
-//module.exports ={Se};
 module.exports = router;
