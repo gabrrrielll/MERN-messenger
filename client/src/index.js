@@ -42,7 +42,7 @@ class FrontendApp extends React.Component {
                data: [],
                loaded: false,
                response: false,
-               endpoint:"/"
+               endpoint:""
           };
 
           this.state = this.initialstate;
@@ -334,13 +334,17 @@ class FrontendApp extends React.Component {
        var right = document.getElementById("right");
        if(   window.innerWidth < 768 ){
           if ( right.style.display === "block"  ) {
+
                  left.style.display = "none";
                  center.style.display = "block";
                  right.style.display = "none";
+
              } else {
+
                  left.style.display = "none";
                  center.style.display = "none";
                  right.style.display = "block";
+
              }
 
        } else {

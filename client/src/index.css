@@ -488,7 +488,7 @@ button {
      margin: auto 6px;
      border-radius: 4px;
      cursor: pointer;
-     background: #76c1f1;
+     background: #fff;
      color: white;
      padding: 1px 5px !important;
      border-radius: 4px;
@@ -585,7 +585,7 @@ div#conversation {
      background: #808080ab;
 }
 span.time-message {
-     font-size: 80%;
+     font-size: 70%;
      color: #6c757d85;
 }
 #inputMessage input {
@@ -713,10 +713,12 @@ span#edit-profile {
      text-align: center;
      margin: 10px;
      border-radius: 10px;
-     color: #0062cc;
+     color: #0063cccc;
+     font-size: 13px;
  }
  .unseed{
-     color: #0062cc;
+     color: #0063cccc;
+     font-size: 13px;
  }
  div#388{
 background: red;
@@ -725,7 +727,13 @@ background: red;
      display: none;
  }
  svg.svg-inline--fa.fa-user-times.fa-w-20 {
-     color: red!important;
+     color: rgb(233, 33, 33)!important;
+ }
+ svg.svg-inline--fa.fa-user-check.fa-w-20 {
+     color: rgb(25, 151, 25)!important;
+ }
+ svg.svg-inline--fa.fa-user-plus.fa-w-20 {
+     color: rgb(1, 130, 190)!important;
  }
 /* --------mobile-------------------- */
 @media (max-width: 768px) {

@@ -78,7 +78,7 @@ class Users extends Component {
           placeholder=" 🔍   Search for users..."
           ref={input => this.search = input}
           onChange={this.handleInputChange}
-          style={{width: "100%", padding:"4px 5px", backgroundColor: this.props.state.me.color+"52" }}
+          style={{width: "100%", padding:"4px 5px", border:  "2px solid " + this.props.state.me.color+"52" }}
         />
         
         <div className="title">Friends </div>
@@ -104,7 +104,7 @@ class Users extends Component {
                                       <button className="addFriend"
                                           title="Remove friend"
                                           onClick={() => this.props.removeFriend(user.email)}
-                                          style={{ backgroundColor: this.props.state.me.color+"cc" }}
+                                          style={{ border:  "2px solid " +  this.props.state.me.color+"cc" }}
                                       >
                                      <FontAwesomeIcon icon={ faUserTimes } /> 
                                    
@@ -153,7 +153,7 @@ class Users extends Component {
                                         className="addFriend"
                                         title="Send friendship request"
                                         onClick={() => this.props.sendFriendRequest(user.email)}
-                                        style={{ backgroundColor: this.props.state.me.color+"cc" }}>
+                                        style={{ border:  "2px solid " + this.props.state.me.color+"cc" }}>
                                         <FontAwesomeIcon icon={ faUserPlus } />
                                 </button>
                               ) : (
@@ -161,7 +161,7 @@ class Users extends Component {
                                         className="addFriend"
                                         title="Revoke friendship request"
                                         onClick={() => this.props.revokeFriendRequest(user.email)}
-                                        style={{ backgroundColor: this.props.state.me.color+"cc" }} >
+                                        style={{ border:  "2px solid " + this.props.state.me.color+"cc" }} >
                                          <FontAwesomeIcon icon={ faUserTimes } />
                                 </button>
                       )}

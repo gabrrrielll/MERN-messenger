@@ -71,18 +71,18 @@ class Profile extends Component {
                       onClick={() => this.props.acceptFriendRequest(email)}
                       name="Accept friend "
                       title="Accept friendship request "
-                      style={{ backgroundColor: this.props.state.me.color+"cc" }}
+                      style={{ border:  "2px solid " + this.props.state.me.color+"cc" }}
                 >
-                   ? <FontAwesomeIcon icon={ faUserCheck } />
+                   <FontAwesomeIcon icon={ faUserCheck } />
                 </button>
                 <button
                   className="addFriend"
                   onClick={() => this.props.deniedFriendRequest(email)}
                   name="Denied friendship request"
                   title="Denied friendship request"
-                  style={{ backgroundColor: this.props.state.me.color+"cc" }}
+                  style={{ border:  "2px solid " +  this.props.state.me.color+"cc" }}
                 >
-                  ? <FontAwesomeIcon icon={ faUserTimes } />
+                  <FontAwesomeIcon icon={ faUserTimes } />
                 </button>
               </div>
             );
@@ -169,18 +169,18 @@ class Profile extends Component {
                                                             className="addFriend"
                                                             title="Revoke friendship request"
                                                             onClick={() => this.props.revokeFriendRequest(email)}
-                                                            style={{ backgroundColor: this.props.state.me.color + "cc" }}
+                                                            style={{ border:  "2px solid " + this.props.state.me.color + "cc" }}
                                                        >
-                                                            x
+                                                          <FontAwesomeIcon icon={ faUserTimes } />
                                                        </button>
                                                   ) : (
                                                        <button
                                                             className="addFriend"
                                                             title="Send friendship request"
                                                             onClick={() => this.props.sendFriendRequest(email)}
-                                                            style={{ backgroundColor: this.props.state.me.color + "cc" }}
+                                                            style={{ border:  "2px solid " + this.props.state.me.color + "cc" }}
                                                        >
-                                                            Send
+                                                          <FontAwesomeIcon icon={ faUserCheck } />
                                                        </button>
                                                   )}
                                              </div>
