@@ -10,45 +10,47 @@ const nodemailer = require("nodemailer");
 const mailValidator = require("email-validator");
 
 router.get("/healthcheck", (req, res) => {
-     res.status(200).json({ message: "Server is alive" });
+    res.status(200).json({ message: "Server is alive" });
 });
 
 const middleware = (req, res, next) => {
-     // function middleware for check the validity of token in all requests
-     if (req.headers["token"]) {
-          var token = req.headers["token"];
-     } else if (req.params.token) {
-          var token = req.params.token;
-     } else if (req.body.token) {
-          var token = req.body.token;
-     } else {
-          res.status(403);
-          res.send({ message: "Token empty", authorized: false });
-          return;
-     }
-     JWT.verify(token, CONFIG.JWT_SECRET_KEY, (error, payload) => {
-          if (error) {
-               res.status(403);
-               res.send({ message: "Invalid token", authorized: false });
-               myEmail = undefined;
-               return myEmail;
-          } else {
-               req.email = payload.email;
-               req.token = token;
-               // update Last Activity because allmost actions going over here
-               User.updateOne({ email: payload.email }, { $set: { last_activity: Date.now().toString() } })
-                    .then(data => {
-                         if (data == null) {
-                              console.log("Empty data", data);
-                         }
-                         // console.log("Update last activity: ", data);
-                    })
-                    .catch(err => {
-                         console.log("Error in DB", err);
-                    });
-               next();
-          }
-     });
+    // function middleware for check the validity of token in all requests
+    if (req.headers["token"]) {
+        var token = req.headers["token"];
+    } else if (req.params.token) {
+        var token = req.params.token;
+    } else if (req.body.token) {
+        var token = req.body.token;
+    } else {
+        res.status(403);
+        res.send({ message: "Token empty", authorized: false });
+        return;
+    }
+    JWT.verify(token, CONFIG.JWT_SECRET_KEY, (error, payload) => {
+        if (error) {
+            res.status(403);
+            res.send({ message: "Invalid token", authorized: false });
+            myEmail = undefined;
+            return myEmail;
+        } else {
+            req.email = payload.email;
+            req.token = token;
+            req.payload = payload;
+
+            // update Last Activity because allmost actions going over here
+            User.updateOne({ email: payload.email }, { $set: { last_activity: Date.now().toString() } })
+                .then(data => {
+                    if (data == null) {
+                        console.log("Empty data", data);
+                    }
+                    // console.log("Update last activity: ", data);
+                })
+                .catch(err => {
+                    console.log("Error in DB", err);
+                });
+            next();
+        }
+    });
 };
 
 router.use("/confirm/:token", middleware);
@@ -61,6 +63,7 @@ router.use("/removefriend", middleware);
 router.use("/addMessage", middleware);
 router.use("/changeprofile", middleware);
 router.use("/changecolorprofile", middleware);
+router.use("/sendEmailRequest", middleware);
 
 router.get("/confirm/:token", CONTROLLER.confirmToken);
 router.get("/conversation", CONTROLLER.conversation);
@@ -72,11 +75,11 @@ router.post("/removefriend", CONTROLLER.removeFriend);
 router.post("/addMessage", CONTROLLER.addMessage);
 router.post("/changeprofile", CONTROLLER.changeProfile);
 router.post("/changecolorprofile", CONTROLLER.setColor);
+router.post("/sendEmailRequest", CONTROLLER.sendEmailRequest);
 
 router.post("/checktoken", CONTROLLER.checkToken);
 
 router.post("/register", CONTROLLER.register);
 router.post("/login", CONTROLLER.login);
-
 
 module.exports = router;

@@ -6,12 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faArrowLeft, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 class Messenger extends Component {
-     keyEnter = e => {
-          //  function for set enter key on submit messages
-          if (e.charCode === 13 || e.keyCode === 13) {
-               this.props.sendMessage();
-          }
-     };
+    
 
       findUser = ( y ) =>{
           if( this.props.state.users ){
@@ -157,7 +152,7 @@ class Messenger extends Component {
                                              name="message"
                                              autoComplete="off"
                                              value={this.props.state.message}
-                                             onKeyDown={this.keyEnter}
+                                             onKeyDown={this.props.keyEnter}
                                         />
 
                                         <span>
@@ -183,6 +178,7 @@ class Messenger extends Component {
                                    revokeFriendRequest={this.props.revokeFriendRequest}
                                    deniedFriendRequest={this.props.deniedFriendRequest}
                                    acceptFriendRequest={this.props.acceptFriendRequest}
+                                   sendEmailRequest={this.props.sendEmailRequest}
                               />
                          </div>
                     </div>

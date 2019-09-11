@@ -42,14 +42,14 @@ class Message extends React.Component {
               nr = 0;  
             }
        
-          if( index > 1 && nr ===1 &&  document.getElementById( index )// &&
+          if( index > 1 && nr ===1 &&  document.getElementById( index )&& document.getElementById( index -nr ) // &&
          // ( index > 1  &&  mes.time -this.props.state.conversation[index-1].time > 3600000 )
           ){
        
            document.getElementById( index -nr ).className ="text-mesage up"; 
            document.getElementById( index  ).className ="text-mesage down";
            }
-          if( index > 1 && nr > 1 &&  document.getElementById( index )  //&&
+          if( index > 1 && nr > 1 &&  document.getElementById( index ) && document.getElementById( index -nr ) && document.getElementById( index -1 ) //&&
         //  ( index > 1  &&  mes.time -this.props.state.conversation[index-1].time > 3600000 )
           ){
            //console.log( "nr----?->", nr," index->", index )

@@ -2,6 +2,7 @@
 
 body {
      font-family: "Poppins", sans-serif;
+     font-family: "Nunito", "Helvetica", Arial, sans-serif;
      height: 100vh;
 }
 
@@ -158,6 +159,7 @@ input[type="text"]:placeholder {
           -webkit-transform: translate3d(0, -100%, 0);
           transform: translate3d(0, -100%, 0);
      }
+
      100% {
           opacity: 1;
           -webkit-transform: none;
@@ -171,6 +173,7 @@ input[type="text"]:placeholder {
           -webkit-transform: translate3d(0, -100%, 0);
           transform: translate3d(0, -100%, 0);
      }
+
      100% {
           opacity: 1;
           -webkit-transform: none;
@@ -183,22 +186,27 @@ input[type="text"]:placeholder {
      from {
           opacity: 0;
      }
+
      to {
           opacity: 1;
      }
 }
+
 @-moz-keyframes fadeIn {
      from {
           opacity: 0;
      }
+
      to {
           opacity: 1;
      }
 }
+
 @keyframes fadeIn {
      from {
           opacity: 0;
      }
+
      to {
           opacity: 1;
      }
@@ -278,11 +286,13 @@ input[type="text"]:placeholder {
      margin: 20px;
      color: #56baed;
 }
+
 #edit-profile .fa-user {
      font-size: 30px;
-     color:#fff;
+     color: #fff;
      margin: 10px 0px 20px 0;
 }
+
 p.underlineHover {
      cursor: pointer;
 }
@@ -304,26 +314,31 @@ p.underlineHover {
      height: 100%;
      background: rgba(0, 123, 255, 0.05);
 }
+
 @media (max-width: 991px) {
+
      #left,
      #right {
           width: 35%;
      }
 }
+
 #left {
      min-width: 280px;
 }
-  
+
 
 .users {
      height: 100%;
      overflow-Y: scroll
 }
+
 #center {
      width: 50%;
      height: 100%;
      text-align: center;
 }
+
 .head {
      background-color: #56baed;
      height: 50px;
@@ -331,21 +346,25 @@ p.underlineHover {
      width: 100%;
      top: 0;
 }
+
 .right-side {
      float: right;
      width: 95px;
- }
- #logout {
+}
+
+#logout {
      margin: 7px 14px 21px 1px;
      font-size: 28px;
-     color: #fff; 
-    cursor: pointer;
- }
- table {
+     color: #fff;
+     cursor: pointer;
+}
+
+table {
      border-collapse: collapse;
      max-width: unset;
      width: 100%;
- }
+}
+
 .box {
      display: flex;
 
@@ -353,6 +372,7 @@ p.underlineHover {
      margin-top: 50px;
      height: 100%;
 }
+
 .user {
      text-align: left;
      cursor: pointer;
@@ -362,6 +382,7 @@ p.underlineHover {
      display: flex;
      justify-content: space-between;
 }
+
 .user-name {
      position: absolute;
      top: 11px;
@@ -372,9 +393,11 @@ p.underlineHover {
      text-overflow: ellipsis;
      white-space: nowrap;
 }
+
 .edit-profile {
      padding-top: 20px;
- }
+}
+
 .user-alert {
      text-align: left;
      cursor: pointer;
@@ -397,49 +420,62 @@ p.underlineHover {
      0% {
           background-position: 0% 50%;
      }
+
      50% {
           background-position: 100% 50%;
      }
+
      100% {
           background-position: 0% 50%;
      }
 }
+
 @-moz-keyframes alarm {
      0% {
           background-position: 0% 50%;
      }
+
      50% {
           background-position: 100% 50%;
      }
+
      100% {
           background-position: 0% 50%;
      }
 }
+
 @-o-keyframes alarm {
      0% {
           background-position: 0% 50%;
      }
+
      50% {
           background-position: 100% 50%;
      }
+
      100% {
           background-position: 0% 50%;
      }
 }
+
 @keyframes alarm {
      0% {
           background-position: 0% 50%;
      }
+
      50% {
           background-position: 100% 50%;
      }
+
      100% {
           background-position: 0% 50%;
      }
 }
+
 .user:hover {
      background: #8080802e;
 }
+
 .user img,
 .user-alert img,
 .friend-photo {
@@ -448,11 +484,13 @@ p.underlineHover {
      border-radius: 50% !important;
      margin: 10px 10px 5px 10px !important;
 }
+
 .profile img {
      width: 80%;
      border-radius: 10%;
      margin: 20px auto;
 }
+
 .profile {
      text-align: center;
      height: 92%;
@@ -469,6 +507,7 @@ p.underlineHover {
      font-weight: 600;
      padding-top: 0;
 }
+
 .title {
      position: sticky;
      background: white;
@@ -483,6 +522,7 @@ p.underlineHover {
      top: 0;
      z-index: 1;
 }
+
 button {
      height: 28px;
      margin: auto 6px;
@@ -494,26 +534,31 @@ button {
      border-radius: 4px;
      box-shadow: 2px 3px 4px 1px #6c757d42;
 }
+
 .user.request {
-    /*  background: #ff9200c2; */
+     /*  background: #ff9200c2; */
      color: white;
      border-bottom: 1px solid grey;
      display: flex;
      justify-content: flex-end !important;
      height: 58px;
 }
+
 .user.request img {
      position: absolute;
      left: 0;
 }
+
 .user.request .user-name {
      min-width: 130px;
      width: 42%;
      margin: 0;
 }
+
 .user.request .message_fragment {
      width: 60%;
 }
+
 #right-side {
      float: right;
 }
@@ -530,6 +575,7 @@ div#inputMessage {
 #intermediate {
      height: calc(100% - 160px);
 }
+
 .text-mesage {
      padding: 5px 9px 6px;
      background: #7db0e7e0;
@@ -540,24 +586,30 @@ div#inputMessage {
      word-break: break-word;
      display: inline-block;
 }
+
 .oriented-right .up {
-   border-radius: 15px 15px 0 15px !important;
+     border-radius: 15px 15px 0 15px !important;
 }
+
 .oriented-right .down {
      border-radius: 15px 0 15px 15px !important;
-  }
-  .oriented-right .middle {
+}
+
+.oriented-right .middle {
      border-radius: 15px 0 0 15px !important;
-  }
-  .oriented-left .middle {
-     border-radius:  0  15px 15px 0 !important;
-  }
-  .oriented-left .up {
+}
+
+.oriented-left .middle {
+     border-radius: 0 15px 15px 0 !important;
+}
+
+.oriented-left .up {
      border-radius: 15px 15px 15px 0 !important;
-  }
-  .oriented-left .down {
-       border-radius: 0 15px 15px 15px !important;
-    }
+}
+
+.oriented-left .down {
+     border-radius: 0 15px 15px 15px !important;
+}
 
 
 div#conversation {
@@ -568,6 +620,7 @@ div#conversation {
      top: 0px;
      padding: 50px 5px;
 }
+
 .oriented-left {
      text-align: left !important;
      margin: 1px 10px;
@@ -577,31 +630,38 @@ div#conversation {
      text-align: right !important;
      margin: 1px 5px;
 }
+
 .profile .title {
      position: sticky;
      top: 0;
 }
+
 .oriented-left span.text-mesage {
      background: #808080ab;
 }
+
 span.time-message {
      font-size: 70%;
      color: #6c757d85;
 }
+
 #inputMessage input {
      line-height: 1;
      width: calc(100% - 10px);
      height: 36px;
      margin: 4px auto;
 }
+
 button.addFriend {
      padding: 0;
 }
+
 button.addFriend img {
      width: 25px;
      height: 20px;
      margin: -6px 6px -3px;
 }
+
 .users center {
      background: #e74b0eed;
      height: 40px;
@@ -610,10 +670,12 @@ button.addFriend img {
      box-shadow: 0 0 4px #0000003d;
      margin: 20px 8px;
 }
+
 span#profile {
      font-size: 26px;
      cursor: pointer;
 }
+
 span#counter {
      position: relative;
      top: -35px;
@@ -624,7 +686,8 @@ span#counter {
      /* line-height: 6px; */
      text-align: center;
      padding: 0px 5px;
- }
+}
+
 .alert-inform {
      cursor: pointer;
      background: #ff9200c2;
@@ -632,23 +695,27 @@ span#counter {
      line-height: 1.2;
      padding: 6px;
 }
+
 #online-bullet img {
      width: 20px;
      margin: 1px 4px;
 }
+
 .last-activity {
      margin-top: 10px;
      font-weight: 500;
      font-size: 16px;
      color: rgb(13, 127, 180);
 }
+
 .first #active-bullet {
      position: absolute;
-     width: 11px!important;
-     height: 11px!important;
+     width: 11px !important;
+     height: 11px !important;
      top: 28px;
      left: 29px;
- }
+}
+
 #inform {
      width: 93%;
      background: orange;
@@ -676,11 +743,13 @@ span#counter {
      white-space: nowrap;
      margin: 0;
 }
+
 #normal {
      overflow: hidden;
      text-overflow: ellipsis;
      white-space: nowrap;
 }
+
 div#bold {
      font-weight: 600;
      color: black;
@@ -688,6 +757,7 @@ div#bold {
      text-overflow: ellipsis;
      white-space: nowrap;
 }
+
 span#edit-profile {
      font-size: 37px;
 
@@ -698,89 +768,104 @@ span#edit-profile {
 .message_fragment[style="font-weight: bold;"] {
      color: rgb(0, 0, 0);
 }
+
 #formContent h5 {
      padding: 20px;
      color: #ffc107;
      font-weight: 300;
      font-family: sans-serif;
 }
+
 #formContent h5 span {
      font-size: 30px;
 }
+
 .date-time {
-     background:rgba(0, 123, 255, 0.05);
+     background: rgba(0, 123, 255, 0.05);
      line-height: 2;
      text-align: center;
      margin: 10px;
      border-radius: 10px;
      color: #0063cccc;
      font-size: 13px;
- }
- .unseed{
+}
+
+.unseed {
      color: #0063cccc;
      font-size: 13px;
- }
- div#388{
-background: red;
- }
- .head .arrow {
+}
+
+div#388 {
+     background: red;
+}
+
+.head .arrow {
      display: none;
- }
- svg.svg-inline--fa.fa-user-times.fa-w-20 {
-     color: rgb(233, 33, 33)!important;
- }
- svg.svg-inline--fa.fa-user-check.fa-w-20 {
-     color: rgb(25, 151, 25)!important;
- }
- svg.svg-inline--fa.fa-user-plus.fa-w-20 {
-     color: rgb(1, 130, 190)!important;
- }
+}
+
+svg.svg-inline--fa.fa-user-times.fa-w-20 {
+     color: rgb(233, 33, 33) !important;
+}
+
+svg.svg-inline--fa.fa-user-check.fa-w-20 {
+     color: rgb(25, 151, 25) !important;
+}
+
+svg.svg-inline--fa.fa-user-plus.fa-w-20 {
+     color: rgb(1, 130, 190) !important;
+}
+
 /* --------mobile-------------------- */
 @media (max-width: 768px) {
-    
-    
+
+
      #left {
           width: 100%;
-          min-width:  unset;
+          min-width: unset;
           position: absolute;
           left: 0;
           top: 50px;
-          height: calc( 100% - 52px);
+          height: calc(100% - 52px);
      }
+
      #center {
           width: 100%;
-          min-width:   unset;
+          min-width: unset;
           position: absolute;
           left: 0;
           top: 50px;
           display: none;
-          height: calc( 100% - 52px);
+          height: calc(100% - 52px);
      }
-      #right {
+
+     #right {
           width: 100%;
-          min-width:   unset;
+          min-width: unset;
           position: absolute;
           left: 0;
           top: 50px;
           display: none;
           z-index: 3;
           background-color: #f8f9fa;
-          height: calc( 100% - 52px);
+          height: calc(100% - 52px);
      }
+
      .head .arrow {
           display: inline;
           color: #ffffff;
           margin: 16px;
           font-size: 20px;
-      }
-      .header-photo {
+     }
+
+     .header-photo {
           width: 33px;
           height: 33px;
           border-radius: 50%;
           margin: -19px 0 16px -9px;
           cursor: pointer;
-      }
-      input[type=text] {
+     }
+
+     input[type=text] {
           background-color: #f6f6f6;
           color: #0d0d0d;
           padding: 5px 1px;
@@ -794,14 +879,17 @@ background: red;
           -webkit-transition: all .5s ease-in-out;
           transition: all .5s ease-in-out;
           border-radius: 5px 5px 5px 5px;
-      }
-      .wrapper {
+     }
+
+     .wrapper {
           padding: 2px;
-      }
-      #formContent {
+     }
+
+     #formContent {
           width: 96%;
-      }
-      .head .last-activity {
+     }
+
+     .head .last-activity {
           /* margin-top: 10px; */
           font-weight: 600;
           font-size: 13px;
@@ -809,21 +897,55 @@ background: red;
           position: absolute;
           top: 18px;
           left: 79px;
-      }
-      .head span#online-bullet img {
+     }
+
+     .head span#online-bullet img {
           position: absolute;
           top: 3px;
           left: -20px;
           width: 10px;
           height: 10px;
-      }
-      #intermediate {
+     }
+
+     #intermediate {
           height: calc(100% - 60px);
-      }
-      div#inputMessage { 
-          height:  60px;
-      }
-      input#message-submit {
+     }
+
+     div#inputMessage {
+          height: 60px;
+     }
+
+     input#message-submit {
           display: none;
-      }
-} 
+     }
+}
+
+/**********End mobile config**************/
+.profile input[type="text"] {
+     color: #0d0d0d;
+     padding: 5px;
+     font-size: 12px;
+     margin: 5px auto;
+     width: 95%;
+     border: 2px solid #2196f32b;
+
+}
+
+.profile input[type="submit"] {
+     font-size: 13px;
+     width: 95% !important;
+     height: 30px !important;
+     line-height: 30px !important;
+     margin: 0 auto 10px !important;
+     padding: unset;
+}
+
+#infos {
+     width: 95%;
+     background: orange;
+     line-height: 1.1;
+     border-radius: 6px;
+     padding: 7px;
+     color: white;
+     font-size: 14px;
+}
