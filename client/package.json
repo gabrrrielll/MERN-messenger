@@ -16,7 +16,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "^3.0.1",
     "socket.io-client": "^2.2.0",
-    "yarn": "^1.16.0"
+    "yarn": "^1.17.3"
   },
   "scripts": {
     "start": "react-scripts start",
