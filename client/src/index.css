@@ -111,17 +111,19 @@ input[type="reset"]:active {
      transform: scale(0.95);
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"],
+input[type="email"] {
      background-color: #f6f6f6;
      border: none;
      color: #0d0d0d;
-     padding: 15px 32px;
+     padding: 15px;
      text-align: center;
      text-decoration: none;
      display: inline-block;
      font-size: 16px;
-     margin: 5px;
-     width: 85%;
+     margin: 5px auto;
+     width: 95%;
      border: 2px solid #f6f6f6;
      -webkit-transition: all 0.5s ease-in-out;
      -moz-transition: all 0.5s ease-in-out;
@@ -865,20 +867,11 @@ svg.svg-inline--fa.fa-user-plus.fa-w-20 {
           cursor: pointer;
      }
 
-     input[type=text] {
-          background-color: #f6f6f6;
-          color: #0d0d0d;
+     input[type=text],
+     input[type=password],
+     input[type=email] {
           padding: 5px 1px;
-          text-align: center;
-          text-decoration: none;
-          display: block;
-          font-size: 15px;
-          margin: 5px auto;
-          width: 94%;
-          border: 2px solid #f6f6f6;
-          -webkit-transition: all .5s ease-in-out;
-          transition: all .5s ease-in-out;
-          border-radius: 5px 5px 5px 5px;
+
      }
 
      .wrapper {
@@ -931,7 +924,7 @@ svg.svg-inline--fa.fa-user-plus.fa-w-20 {
 
 }
 
-.profile input[type="submit"] {
+#submit-email {
      font-size: 13px;
      width: 95% !important;
      height: 30px !important;

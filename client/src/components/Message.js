@@ -136,7 +136,7 @@ class Message extends React.Component {
 
 
                   return (
-                        <div key={index} id="message"
+                        <div key={index} id="message-display"
                          className={ setPosition( mes.email, index ) }>
 
 { /*  ( index > 1  && 

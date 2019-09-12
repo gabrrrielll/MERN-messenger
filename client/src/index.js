@@ -47,14 +47,13 @@ class FrontendApp extends React.Component {
             loaded: false,
             response: false,
             token: "",
-            endpoint: "https://mern-messenger.herokuapp.com",
+            endpoint: "http://localhost:4000",
         };
 
         this.state = this.initialstate;
     }
 
     loadData = myEmail => {
-        console.log("-----loadData-------:");
         // this function load data from backend sockets
         const socket = socketIOClient(this.state.endpoint);
 
@@ -200,13 +199,23 @@ class FrontendApp extends React.Component {
     };
 
     updateData = event => {
-        // function for update state with input value
         this.setState({
             [event.target.id]: event.target.value,
             inform: "",
             info: "",
             infos: "",
         });
+
+        var input = document.getElementById(event.target.id);
+        input.addEventListener(
+            "keydown",
+            event => {
+                if ((event.keyCode === 13 || event.charCode === 13) && event.target.id !== "message") {
+                    document.getElementById("submit").click();
+                }
+            },
+            false,
+        );
     };
 
     setColor = () => {
@@ -393,33 +402,37 @@ class FrontendApp extends React.Component {
         this.scrollUP();
     };
     tryRegister = () => {
-        if (this.state.rpassword !== this.state.password) {
-            this.setState({ inform: "Passwords don't match!" });
-            return;
-        }
-        if (this.state.friends_requests) {
-            var friends_requests = this.state.friends_requests;
+        if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(this.state.email)) {
+            if (this.state.rpassword !== this.state.password) {
+                this.setState({ inform: "Passwords don't match!" });
+                return;
+            }
+            if (this.state.friends_requests) {
+                var friends_requests = this.state.friends_requests;
+            } else {
+                friends_requests = [];
+            }
+            axios
+                .post(this.state.endpoint + "/register", {
+                    email: this.state.email,
+                    firstname: this.state.firstname,
+                    lastname: this.state.lastname,
+                    password: this.state.password,
+                    tel: this.state.tel,
+                    photo: this.state.photo,
+                    friends_requests,
+                })
+                .then(response => {
+                    // console.log(response);
+                    this.setState({ inform: response.data.inform, autentificate: true });
+                })
+                .catch(err => {
+                    this.setState({ inform: err.response.data.inform });
+                    console.log(err);
+                });
         } else {
-            friends_requests = [];
+            this.setState({ inform: "You entered invalid email!" });
         }
-        axios
-            .post(this.state.endpoint + "/register", {
-                email: this.state.email,
-                firstname: this.state.firstname,
-                lastname: this.state.lastname,
-                password: this.state.password,
-                tel: this.state.tel,
-                photo: this.state.photo,
-                friends_requests,
-            })
-            .then(response => {
-                console.log(response);
-                this.setState({ inform: response.data.inform, autentificate: true });
-            })
-            .catch(err => {
-                this.setState({ inform: err.response.data.inform });
-                console.log(err);
-            });
     };
 
     tryLogin = () => {
@@ -458,7 +471,7 @@ class FrontendApp extends React.Component {
                 //  console.log("response.data.requestSentEmail", response.data );
             })
             .catch(error => {
-                console.log(error, "eroare la accesare");
+                console.log(error);
             });
     };
     revokeFriendRequest = email => {
@@ -471,7 +484,7 @@ class FrontendApp extends React.Component {
                 // console.log("response.data.revokefriendrequest", response.data );
             })
             .catch(error => {
-                console.log(error, "eroare la accesare");
+                console.log(error);
             });
     };
     deniedFriendRequest = email => {
@@ -544,9 +557,9 @@ class FrontendApp extends React.Component {
     };
 
     sendEmailRequest = () => {
-        console.log("sendEmailRequest", this.state.EmailRequest);
+        //console.log("sendEmailRequest", this.state.EmailRequest);
 
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state.EmailRequest)) {
+        if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(this.state.EmailRequest)) {
             this.setState({ infos: "" });
             axios
                 .post(this.state.endpoint + "/sendEmailRequest", {
@@ -554,11 +567,11 @@ class FrontendApp extends React.Component {
                     email_target: this.state.EmailRequest,
                 })
                 .then(response => {
-                    console.log(" response", response);
+                    //console.log(" response", response);
                     this.setState({ infos: response.data.infos });
                 })
                 .catch(error => {
-                    console.log(error, "eroare la accesare");
+                    console.log(error);
                 });
             return true;
         }
@@ -586,15 +599,8 @@ class FrontendApp extends React.Component {
 
     render() {
         if (window && window.location.pathname.slice(0, 20) === "/emailfriendrequest/") {
-            console.log("potrivire-----------------", window.location.pathname);
             this.getToken();
         }
-
-        /*  var button = document.getElementById("submit");
-       console.log("buton----------", button);
-        if (button) {
-            button.onKeyDown = this.keyEnter;
-        } */
 
         return (
             <BrowserRouter>

@@ -73,15 +73,7 @@ class Profile extends Component {
 
                 <input type="text" title="You can send email invitation for friendship to person which is not in SUGESTIONS list" placeholder="Email address to send friendship request" onChange={this.props.updateData} id="EmailRequest" name="EmailRequest" autoComplete="off" value={this.props.state.EmailRequest} />
 
-                <input
-                    type="submit"
-                    onKeyDown={this.props.keyEnter}
-                    style={{ backgroundColor: this.props.state.me.color }}
-                    id="submit"
-                    value="Send"
-                    onClick={this.props.sendEmailRequest}
-                    //onKeyDown={this.keyEnter}
-                />
+                <input type="submit" style={{ backgroundColor: this.props.state.me.color }} id="submit-email" value="Send" onClick={this.props.sendEmailRequest} />
                 {this.props.state.infos ? <label id="infos">{this.props.state.infos}</label> : null}
 
                 <div className="title">Profile</div>

@@ -13,7 +13,7 @@ const Register = props => {
                         {props.state.showEmailInput ? (
                             <tr>
                                 <td colSpan="2">
-                                    <input type="text" id="email" className="fadeIn second" name="email" placeholder="Email" onChange={props.updateData} />
+                                    <input type="email" id="email" className="fadeIn second" name="email" placeholder="Email" onChange={props.updateData} />
                                 </td>
                             </tr>
                         ) : null}
@@ -28,10 +28,10 @@ const Register = props => {
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" id="password" className="fadeIn second" name="password" placeholder="Password" onChange={props.updateData} />
+                                <input type="password" id="password" className="fadeIn second" name="password" placeholder="Password" onChange={props.updateData} />
                             </td>
                             <td>
-                                <input type="text" id="rpassword" className="fadeIn second" name="rpassword" placeholder="Repeat password" onChange={props.updateData} />
+                                <input type="password" id="rpassword" className="fadeIn second" name="rpassword" placeholder="Repeat password" onChange={props.updateData} />
                             </td>
                         </tr>
                         <tr>
