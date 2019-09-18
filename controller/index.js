@@ -840,7 +840,8 @@ const sendEmailRequest = (req, res) => {
                                     to: req.body.email_target,
                                     subject: "You have one frindship request",
                                     text: "Please verify email, click on link",
-                                    html: "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  and email: <b>" + myEmail + " </b> to register in MERN Messenger App and accept his friends request, please click  <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + confirmToken + "'><b>HERE</b></a> </h3></center>",
+                                    html: "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  and email: <b>" + myEmail + " </b> to register in MERN Messenger App and accept his friends request, please click 
+                                     <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + confirmToken + "'><b>HERE</b></a> </h3></center>",
                                 };
                                 // Initializing the transport component with the configurations defined above
                                 var transporter = nodemailer.createTransport(smtpConfig);
@@ -859,10 +860,11 @@ const sendEmailRequest = (req, res) => {
                             } */
 
                             var helper = require("sendgrid").mail;
-                            var from_email = new helper.Email("gabrrrielll@gmail.com");
-                            var to_email = new helper.Email("allmediacreation@gmail.com");
-                            var subject = "Hello World from the SendGrid Node.js Library!";
-                            var content = new helper.Content("text/plain", "Hello, Email!");
+                            var from_email = new helper.Email("MERN Messenger <nodejsappcontact@gmail.com>");
+                            var to_email = new helper.Email(req.body.email_target);
+                            var subject = "You have one frindship request";
+                            var cont = "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  and email: <b>" + myEmail + " </b> to register in MERN Messenger App and accept his friends request, please click <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + confirmToken + "'><b>HERE</b></a> </h3></center>";
+                            var content = new helper.Content("text/plain", cont);
                             var mail = new helper.Mail(from_email, subject, to_email, content);
 
                             var sg = require("sendgrid")(process.env.SENDGRID_API_KEY);
