@@ -817,7 +817,7 @@ const sendEmailRequest = (req, res) => {
                         } else {
                             sent.requests_sent.push(req.body.email_target);
                             sent.save();
-
+                            /* 
                             {
                                 // create the SMTP object
                                 var smtpConfig = {
@@ -856,7 +856,27 @@ const sendEmailRequest = (req, res) => {
                                     statusCode: 200,
                                     infos: "Your friends requst was sent.",
                                 });
-                            }
+                            } */
+
+                            var helper = require("sendgrid").mail;
+                            var from_email = new helper.Email("test@example.com");
+                            var to_email = new helper.Email("gabrrrielll@gmail.com");
+                            var subject = "Hello World from the SendGrid Node.js Library!";
+                            var content = new helper.Content("text/plain", "Hello, Email!");
+                            var mail = new helper.Mail(from_email, subject, to_email, content);
+
+                            var sg = require("sendgrid")(process.env.SENDGRID_API_KEY);
+                            var request = sg.emptyRequest({
+                                method: "POST",
+                                path: "/v3/mail/send",
+                                body: mail.toJSON(),
+                            });
+
+                            sg.API(request, function(error, response) {
+                                console.log(response.statusCode);
+                                console.log(response.body);
+                                console.log(response.headers);
+                            });
                         }
                     })
                     .catch(err => {
