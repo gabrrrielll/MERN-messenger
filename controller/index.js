@@ -905,7 +905,7 @@ const emailSender = (to, subject, cont) => {
     var helper = require("sendgrid").mail;
     var from_email = new helper.Email("MERN Messenger <nodejsappcontact@gmail.com>");
     var to_email = new helper.Email(to);
-    var content = new helper.Content("html/text", cont);
+    var content = new helper.Content("text/plain", cont);
     var mail = new helper.Mail(from_email, subject, to_email, content);
 
     var sg = require("sendgrid")(process.env.SENDGRID_API_KEY);
