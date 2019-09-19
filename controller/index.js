@@ -875,9 +875,10 @@ const sendEmailRequest = (req, res) => {
                                     infos: "Your friends requst was sent.",
                                 });
                             } */
+                            var confirmToken = JWT.sign({ mail: req.body.email_target, friends_requests: myEmail }, CONFIG.JWT_SECRET_KEY);
                             var to = req.body.email_target;
                             var subject = "You have one frindship request";
-                            var cont = "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  and email: <b>" + myEmail + " </b> to register in MERN Messenger App and accept his friends request, please click <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + confirmToken + "'><b>HERE</b></a> </h3></center>";
+                            var cont = "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  with email: <b>" + myEmail + " </b> to register in MERN Messenger App. For accept this friends request, please click <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + confirmToken + "'><b>HERE</b></a> </h3></center>";
                             emailSender(to, subject, cont);
 
                             res.send({
@@ -904,7 +905,7 @@ const emailSender = (to, subject, cont) => {
     var helper = require("sendgrid").mail;
     var from_email = new helper.Email("MERN Messenger <nodejsappcontact@gmail.com>");
     var to_email = new helper.Email(to);
-    var content = new helper.Content("text/plain", cont);
+    var content = new helper.Content("html/text", cont);
     var mail = new helper.Mail(from_email, subject, to_email, content);
 
     var sg = require("sendgrid")(process.env.SENDGRID_API_KEY);
