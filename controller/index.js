@@ -139,7 +139,7 @@ const register = (req, res) => {
                             res.sendStatus(500);
                         });
 
-                    // create the SMTP object
+                    /* // create the SMTP object
                     var smtpConfig = {
                         service: "Gmail", //which services is used
                         host: "smtp.gmail.com", // SMTP address
@@ -173,6 +173,16 @@ const register = (req, res) => {
                     res.send({
                         statusCode: 200,
                         inform: "Register with succes! ",
+                    }); */
+
+                    var to = req.body.email;
+                    var subject = "Registration with succes!";
+                    var cont = "<center><h3>Hi, your registration on MESSENGER was successful! Click  <a href ='https://mern-messenger.herokuapp.com/' ><b>HERE</b></a> to login.</h3></center>";
+                    emailSender(to, subject, cont);
+
+                    res.send({
+                        statusCode: 200,
+                        inform: "Register with succes! ",
                     });
                 }
             });
@@ -201,7 +211,7 @@ const register = (req, res) => {
                     res.status(200).json({ inform: "The email is allready teaken" });
                 } else {
                     // create the SMTP object
-                    var smtpConfig = {
+                    /* var smtpConfig = {
                         service: "Gmail", //which services is used
                         host: "smtp.gmail.com", // SMTP address
                         port: 465, //l SMTPS port,  S represent SECURED
@@ -231,7 +241,14 @@ const register = (req, res) => {
                         } else {
                             console.log("Mail was send to " + req.body.email + " and response " + info.response);
                         }
-                    });
+                    }); */
+
+                    var confirmToken = JWT.sign({ confirm: true, email: req.body.email }, CONFIG.JWT_SECRET_KEY);
+                    var to = req.body.email;
+                    var subject = "Account verification token";
+                    var cont = "<h3><center>For register on messenger, please click  <a href='https://mern-messenger.herokuapp.com/confirm/" + confirmToken + "'><b>HERE</b></a> to verify your email.</center></h3>";
+                    emailSender(to, subject, cont);
+
                     res.send({
                         statusCode: 200,
                         inform: "Register with succes! Now you have to click the link received in your mail to activate the account.",
@@ -858,26 +875,14 @@ const sendEmailRequest = (req, res) => {
                                     infos: "Your friends requst was sent.",
                                 });
                             } */
-
-                            var helper = require("sendgrid").mail;
-                            var from_email = new helper.Email("MERN Messenger <nodejsappcontact@gmail.com>");
-                            var to_email = new helper.Email(req.body.email_target);
+                            var to = req.body.email_target;
                             var subject = "You have one frindship request";
                             var cont = "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  and email: <b>" + myEmail + " </b> to register in MERN Messenger App and accept his friends request, please click <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + confirmToken + "'><b>HERE</b></a> </h3></center>";
-                            var content = new helper.Content("text/plain", cont);
-                            var mail = new helper.Mail(from_email, subject, to_email, content);
+                            emailSender(to, subject, cont);
 
-                            var sg = require("sendgrid")(process.env.SENDGRID_API_KEY);
-                            var request = sg.emptyRequest({
-                                method: "POST",
-                                path: "/v3/mail/send",
-                                body: mail.toJSON(),
-                            });
-
-                            sg.API(request, function(error, response) {
-                                console.log(response.statusCode);
-                                console.log(response.body);
-                                console.log(response.headers);
+                            res.send({
+                                statusCode: 200,
+                                infos: "Your friends requst was sent.",
                             });
                         }
                     })
@@ -895,6 +900,26 @@ const sendEmailRequest = (req, res) => {
         });
 };
 
+const emailSender = (to, subject, cont) => {
+    var helper = require("sendgrid").mail;
+    var from_email = new helper.Email("MERN Messenger <nodejsappcontact@gmail.com>");
+    var to_email = new helper.Email(to);
+    var content = new helper.Content("text/plain", cont);
+    var mail = new helper.Mail(from_email, subject, to_email, content);
+
+    var sg = require("sendgrid")(process.env.SENDGRID_API_KEY);
+    var request = sg.emptyRequest({
+        method: "POST",
+        path: "/v3/mail/send",
+        body: mail.toJSON(),
+    });
+
+    sg.API(request, function(error, response) {
+        console.log(response.statusCode);
+        console.log(response.body);
+        console.log(response.headers);
+    });
+};
 module.exports = {
     register,
     login,
