@@ -902,7 +902,7 @@ const sendEmailRequest = (req, res) => {
 };
 
 const emailSender = (to, subject, cont) => {
-    var helper = require("sendgrid").mail;
+    /*  var helper = require("sendgrid").mail;
     var from_email = new helper.Email("MERN Messenger <nodejsappcontact@gmail.com>");
     var to_email = new helper.Email(to);
     var content = new helper.Content("text/plain", cont);
@@ -920,6 +920,17 @@ const emailSender = (to, subject, cont) => {
         console.log(response.body);
         console.log(response.headers);
     });
+ */
+    const sgMail = require("@sendgrid/mail");
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+    const msg = {
+        to: to,
+        from: "MERN Messenger <nodejsappcontact@gmail.com>",
+        subject: subject,
+        text: "and easy to do anywhere, even with Node.js",
+        html: cont,
+    };
+    sgMail.send(msg);
 };
 module.exports = {
     register,
