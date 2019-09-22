@@ -829,12 +829,12 @@ const sendEmailRequest = (req, res) => {
                 //check if in our send list exist request allready sent
                 User.findOne({ email: myEmail })
                     .then(sent => {
-                        /* if (sent && (sent.friends.some(x => x === req.body.email_target) || sent.friends_requests.some(x => x === req.body.email_target) || sent.requests_sent.some(x => x === req.body.email_target))) {
+                        if (sent && (sent.friends.some(x => x === req.body.email_target) || sent.friends_requests.some(x => x === req.body.email_target) || sent.requests_sent.some(x => x === req.body.email_target))) {
                             res.status(200).json({ infos: "Already friend or friend request" });
                         } else {
                             sent.requests_sent.push(req.body.email_target);
-                            sent.save(); */
-                        /* 
+                            sent.save();
+                            /* 
                             {
                                 // create the SMTP object
                                 var smtpConfig = {
@@ -875,17 +875,17 @@ const sendEmailRequest = (req, res) => {
                                     infos: "Your friends requst was sent.",
                                 });
                               } */
-                        var dataToken = JWT.sign({ mail: req.body.email_target, friends_requests: myEmail }, CONFIG.JWT_SECRET_KEY);
-                        var to = req.body.email_target;
-                        var subject = "You have one frindship request";
-                        var cont = "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  with email: <b>" + myEmail + " </b> to register in MERN Messenger App. For accept this friends request, please click <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + dataToken + "'><b>HERE</b></a> </h3></center>";
-                        emailSender(to, subject, cont);
+                            var dataToken = JWT.sign({ mail: req.body.email_target, friends_requests: myEmail }, "47vhc93y5hncbwier7rr22");
+                            var to = req.body.email_target;
+                            var subject = "You have one frindship request";
+                            var cont = "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  with email: <b>" + myEmail + " </b> to register in MERN Messenger App. For accept this friends request, please click <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + dataToken + "'><b>HERE</b></a> </h3></center>";
+                            emailSender(to, subject, cont);
 
-                        res.send({
-                            statusCode: 200,
-                            infos: "Your friends requst was sent.",
-                        });
-                        //}
+                            res.send({
+                                statusCode: 200,
+                                infos: "Your friends requst was sent.",
+                            });
+                        }
                     })
                     .catch(err => {
                         console.log("DB error");
