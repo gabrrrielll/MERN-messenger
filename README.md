@@ -23,3 +23,5 @@
 ##### View optimization for all devices, etc.
 
 ##### Send email invitation for registration to users who not have acount and after registration they will become friends.
+
+## You can try the app with register proocess or without register with user: demo@demo.com and password: demo

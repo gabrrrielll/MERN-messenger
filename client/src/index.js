@@ -19,7 +19,7 @@ class FrontendApp extends React.Component {
             showEmailInput: true,
             firstname: "",
             lastname: "",
-            password: "",
+            password: "demo",
             rpassword: "",
             tel: "",
             photo: "",
@@ -27,7 +27,7 @@ class FrontendApp extends React.Component {
             inform: "",
             info: "",
             infos: "",
-            myEmail: "",
+            myEmail: "demo@demo.com",
             me: "",
             color: "#56baed",
             users: [],
@@ -587,7 +587,7 @@ class FrontendApp extends React.Component {
     getToken() {
         var token = window.location.pathname.slice(20);
         //console.log("token------->", token);
-        JWT.verify(token, "1q7PmGH04phLl5k6c2AisEda2y286UtKPxwrCz3T1M", (error, payload) => {
+        JWT.verify(token, process.env.JWT_SECRET_KEY, (error, payload) => {
             if (error) {
                 console.log("eror payload", error);
             }
