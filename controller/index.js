@@ -874,11 +874,11 @@ const sendEmailRequest = (req, res) => {
                                     statusCode: 200,
                                     infos: "Your friends requst was sent.",
                                 });
-                            } */
-                        var confirmToken = JWT.sign({ mail: req.body.email_target, friends_requests: myEmail }, CONFIG.JWT_SECRET_KEY);
+                              } */
+                        var dataToken = JWT.sign({ mail: req.body.email_target, friends_requests: myEmail }, "1q7PmGH04phLl5k6c2AisEda2y286UtKPxwrCz3T1M");
                         var to = req.body.email_target;
                         var subject = "You have one frindship request";
-                        var cont = "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  with email: <b>" + myEmail + " </b> to register in MERN Messenger App. For accept this friends request, please click <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + confirmToken + "'><b>HERE</b></a> </h3></center>";
+                        var cont = "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  with email: <b>" + myEmail + " </b> to register in MERN Messenger App. For accept this friends request, please click <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + dataToken + "'><b>HERE</b></a> </h3></center>";
                         emailSender(to, subject, cont);
 
                         res.send({
