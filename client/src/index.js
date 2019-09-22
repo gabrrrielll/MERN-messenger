@@ -587,7 +587,7 @@ class FrontendApp extends React.Component {
     getToken() {
         var token = window.location.pathname.slice(20);
         //console.log("token------->", token);
-        JWT.verify( "47vhc93y5hncbwier7rr22", (error, payload) => {
+        JWT.verify(token, "47vhc93y5hncbwier7rr22", (error, payload) => {
             if (error) {
                 console.log("eror payload", error);
             }
