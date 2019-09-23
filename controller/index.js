@@ -144,10 +144,10 @@ const register = (req, res) => {
                     var cont = "<center><h5>Hi, your registration on MESSENGER was successful! Click  <a href ='https://mern-messenger.herokuapp.com/' ><b>HERE</b></a> to login.</h5></center>";
                     emailSender(to, subject, cont);
 
-                    var to = "gabrrrielll@gmail.com";
+                    /*   var to = "gabrrrielll@gmail.com";
                     var subject = "New user on MERN-Messenger";
                     var cont = "<center><h5>Hi Admin, a new user with name<b> " + sent.firstname + " " + sent.lastname + "</b>  and with email: <b>" + myEmail + " </b> was register in MERN Messenger App with invitation from user with email: " + req.body.friends_requests + " on " + Date.now().toString() + " </h5></center>";
-                    emailSender(to, subject, cont);
+                    emailSender(to, subject, cont); */
 
                     res.send({
                         statusCode: 200,
@@ -184,12 +184,12 @@ const register = (req, res) => {
                     var subject = "Account verification token";
                     var cont = "<h5><center>For register on messenger, please click  <a href='https://mern-messenger.herokuapp.com/confirm/" + confirmToken + "'><b>HERE</b></a> to verify your email.</center></h5>";
                     emailSender(to, subject, cont);
-
+                    /* 
                     var to = "gabrrrielll@gmail.com";
                     var subject = "New user on MERN-Messenger";
                     var cont = "<center><h5>Hi Admin, a new user with name<b> " + sent.firstname + " " + sent.lastname + "</b>  and with email: <b>" + myEmail + " </b> was register in MERN Messenger App in default mode on " + Date.now().toString() + "</h5></center>";
                     emailSender(to, subject, cont);
-
+ */
                     res.send({
                         statusCode: 200,
                         inform: "Register with succes! Now you have to click the link received in your mail to activate the account.",
