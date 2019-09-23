@@ -106,7 +106,7 @@ const register = (req, res) => {
                 mail_confirm: true,
                 password: req.body.password,
                 tel: req.body.tel,
-                photo: req.body.photo ? req.body.photo : "https://www.w3schools.com/w3css/img_avatar3.png",
+                photo: req.body.photo ? req.body.photo : "https://raw.githubusercontent.com/gabrrrielll/MERN-messenger/master/user-img.png",
                 friends: req.body.friends_requests,
                 friends_requests: [],
                 requests_sent: [],
@@ -807,7 +807,7 @@ const emailSender = (to, subject, cont) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
         to: to,
-        from: "gabrrrielll@gmail.com",
+        from: "MERN-Messenger<noreply@mern-messenger.herokuapp.com>",
         subject: subject,
         text: "You have to check the html version...",
         html: cont,
