@@ -25,3 +25,5 @@
 ##### Send email invitation for registration to users who not have acount and after registration they will become friends.
 
 ## You can try the app with register proocess or without register with user: demo@demo.com and password: demo
+
+###### please note that heroku pauses the application after a duration of 30 minutes when it was not used, so there is the possibility of waiting for the application to recharge npm for a few seconds.

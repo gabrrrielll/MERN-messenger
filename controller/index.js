@@ -139,45 +139,14 @@ const register = (req, res) => {
                             res.sendStatus(500);
                         });
 
-                    /* // create the SMTP object
-                    var smtpConfig = {
-                        service: "Gmail", //which services is used
-                        host: "smtp.gmail.com", // SMTP address
-                        port: 465, //l SMTPS port,  S represent SECURED
-                        secure: true, //For activated the secured protocol
-                        auth: {
-                            // the SMTP credentilales acces
-                            user: "nodejsappcontact@gmail.com",
-                            pass: "Parola123!",
-                        },
-                    };
-
-                    // will create the body of message
-                    var mailOption = {
-                        from: "nodejsappcontact@gmail.com",
-                        to: req.body.email,
-                        subject: "Registration with succes!",
-                        text: "Hi, your registration on MESSENGER was successful! ",
-                        html: "<center><h3>Hi, your registration on MESSENGER was successful! Click  <a href ='https://mern-messenger.herokuapp.com/' ><b>HERE</b></a> to login.</h3></center>",
-                    };
-                    // Initializing the transport component with the configurations defined above
-                    var transporter = nodemailer.createTransport(smtpConfig);
-                    //Send the message
-                    transporter.sendMail(mailOption, (err, info) => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log("Mail was send to " + req.body.email + " and response " + info.response);
-                        }
-                    });
-                    res.send({
-                        statusCode: 200,
-                        inform: "Register with succes! ",
-                    }); */
-
                     var to = req.body.email;
                     var subject = "Registration with succes!";
-                    var cont = "<center><h3>Hi, your registration on MESSENGER was successful! Click  <a href ='https://mern-messenger.herokuapp.com/' ><b>HERE</b></a> to login.</h3></center>";
+                    var cont = "<center><h5>Hi, your registration on MESSENGER was successful! Click  <a href ='https://mern-messenger.herokuapp.com/' ><b>HERE</b></a> to login.</h5></center>";
+                    emailSender(to, subject, cont);
+
+                    var to = "gabrrrielll@gmail.com";
+                    var subject = "New user on MERN-Messenger";
+                    var cont = "<center><h5>Hi Admin, a new user with name<b> " + sent.firstname + " " + sent.lastname + "</b>  and with email: <b>" + myEmail + " </b> was register in MERN Messenger App with invitation from user with email: " + req.body.friends_requests + " on " + Date.now().toString() + " </h5></center>";
                     emailSender(to, subject, cont);
 
                     res.send({
@@ -210,43 +179,15 @@ const register = (req, res) => {
                     console.log(err);
                     res.status(200).json({ inform: "The email is allready teaken" });
                 } else {
-                    // create the SMTP object
-                    /* var smtpConfig = {
-                        service: "Gmail", //which services is used
-                        host: "smtp.gmail.com", // SMTP address
-                        port: 465, //l SMTPS port,  S represent SECURED
-                        secure: true, //For activated the secured protocol
-                        auth: {
-                            // the SMTP credentilales acces
-                            user: "nodejsappcontact@gmail.com",
-                            pass: "Parola123!",
-                        },
-                    };
-                    // Create the token which will send in mail to the user
-                    var confirmToken = JWT.sign({ confirm: true, email: req.body.email }, CONFIG.JWT_SECRET_KEY);
-                    // will create the body of message
-                    var mailOption = {
-                        from: "nodejsappcontact@gmail.com",
-                        to: req.body.email,
-                        subject: "Account verification token",
-                        text: "<h3><center>For register on messenger, please click  <a href='https://mern-messenger.herokuapp.com/confirm/" + confirmToken + "'><b>HERE</b></a> to verify your email.</center></h3>",
-                        html: "<h3><center>For register on messenger, please click  <a href='https://mern-messenger.herokuapp.com/confirm/" + confirmToken + "'><b>HERE</b></a> to verify your email.</center></h3>",
-                    };
-                    // Initializing the transport component with the configurations defined above
-                    var transporter = nodemailer.createTransport(smtpConfig);
-                    //Send the message
-                    transporter.sendMail(mailOption, (err, info) => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            console.log("Mail was send to " + req.body.email + " and response " + info.response);
-                        }
-                    }); */
-
                     var confirmToken = JWT.sign({ confirm: true, email: req.body.email }, CONFIG.JWT_SECRET_KEY);
                     var to = req.body.email;
                     var subject = "Account verification token";
-                    var cont = "<h3><center>For register on messenger, please click  <a href='https://mern-messenger.herokuapp.com/confirm/" + confirmToken + "'><b>HERE</b></a> to verify your email.</center></h3>";
+                    var cont = "<h5><center>For register on messenger, please click  <a href='https://mern-messenger.herokuapp.com/confirm/" + confirmToken + "'><b>HERE</b></a> to verify your email.</center></h5>";
+                    emailSender(to, subject, cont);
+
+                    var to = "gabrrrielll@gmail.com";
+                    var subject = "New user on MERN-Messenger";
+                    var cont = "<center><h5>Hi Admin, a new user with name<b> " + sent.firstname + " " + sent.lastname + "</b>  and with email: <b>" + myEmail + " </b> was register in MERN Messenger App in default mode on " + Date.now().toString() + "</h5></center>";
                     emailSender(to, subject, cont);
 
                     res.send({
@@ -269,7 +210,7 @@ const confirmToken = (req, res) => {
     User.updateOne({ email: myEmail }, { $set: { mail_confirm: true } })
         .then(data => {
             res.send(
-                "<style>h3 {margin-top: 45px;} body{ background:  linear-gradient(#ffffff 50%, rgba(255,255,255,0) 0) 0 0, radial-gradient(circle closest-side, #FFFFFF 53%, rgba(255,255,255,0) 0) 0 0, radial-gradient(circle closest-side, #FFFFFF 50%, rgba(255,255,255,0) 0) 55px 0 #48B; background-size: 110px 200px; background-repeat: repeat-x; }</style><h3><center>Your account was activated! You must now login <a href ='https://mern-messenger.herokuapp.com/' ><b>HERE</b></a></center></h3>",
+                "<style>h3 {margin-top: 45px;} body{ with: 100%; background:  linear-gradient(#ffffff 50%, rgba(255,255,255,0) 0) 0 0, radial-gradient(circle closest-side, #FFFFFF 53%, rgba(255,255,255,0) 0) 0 0, radial-gradient(circle closest-side, #FFFFFF 50%, rgba(255,255,255,0) 0) 55px 0 #48B; background-size: 110px 200px; background-repeat: repeat-x; }</style><h3><center>Your account was activated! You must now login <a href ='https://mern-messenger.herokuapp.com/' ><b>HERE</b></a></center></h3>",
             );
         })
         .catch(err => {
@@ -834,47 +775,7 @@ const sendEmailRequest = (req, res) => {
                         } else {
                             sent.requests_sent.push(req.body.email_target);
                             sent.save();
-                            /* 
-                            {
-                                // create the SMTP object
-                                var smtpConfig = {
-                                    service: "Gmail", //which services is used
-                                    host: "smtp.gmail.com", // SMTP address
-                                    port: 465, //l SMTPS port,  S represent SECURED
-                                    secure: true, //For activated the secured protocol
-                                    auth: {
-                                        // the SMTP credentilales acces
-                                        user: "nodejsappcontact@gmail.com",
-                                        pass: "Parola123!",
-                                    },
-                                };
-                                // Create the token which will send in mail to the user
-                                var confirmToken = JWT.sign({ mail: req.body.email_target, friends_requests: myEmail }, CONFIG.JWT_SECRET_KEY);
 
-                                // will create the body of message
-                                var mailOption = {
-                                    from: "MERN Messenger <nodejsappcontact@gmail.com>",
-                                    to: req.body.email_target,
-                                    subject: "You have one frindship request",
-                                    text: "Please verify email, click on link",
-                                    html: "<center><h3>You are invited from<b> " + sent.firstname + " " + sent.lastname + "</b>  and email: <b>" + myEmail + " </b> to register in MERN Messenger App and accept his friends request, please click 
-                                     <a href='https://mern-messenger.herokuapp.com/emailfriendrequest/" + confirmToken + "'><b>HERE</b></a> </h3></center>",
-                                };
-                                // Initializing the transport component with the configurations defined above
-                                var transporter = nodemailer.createTransport(smtpConfig);
-                                //Send the message
-                                transporter.sendMail(mailOption, (err, info) => {
-                                    if (err) {
-                                        console.log(err);
-                                    } else {
-                                        console.log("Mail was send to " + req.body.email_target + " and response " + info.response);
-                                    }
-                                });
-                                res.send({
-                                    statusCode: 200,
-                                    infos: "Your friends requst was sent.",
-                                });
-                              } */
                             var dataToken = JWT.sign({ mail: req.body.email_target, friends_requests: myEmail }, "47vhc93y5hncbwier7rr22");
                             var to = req.body.email_target;
                             var subject = "You have one frindship request";
@@ -902,32 +803,13 @@ const sendEmailRequest = (req, res) => {
 };
 
 const emailSender = (to, subject, cont) => {
-    /*  var helper = require("sendgrid").mail;
-    var from_email = new helper.Email("MERN Messenger <nodejsappcontact@gmail.com>");
-    var to_email = new helper.Email(to);
-    var content = new helper.Content("text/plain", cont);
-    var mail = new helper.Mail(from_email, subject, to_email, content);
-
-    var sg = require("sendgrid")(process.env.SENDGRID_API_KEY);
-    var request = sg.emptyRequest({
-        method: "POST",
-        path: "/v3/mail/send",
-        body: mail.toJSON(),
-    });
-
-    sg.API(request, function(error, response) {
-        console.log(response.statusCode);
-        console.log(response.body);
-        console.log(response.headers);
-    });
- */
     const sgMail = require("@sendgrid/mail");
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
         to: to,
         from: "gabrrrielll@gmail.com",
         subject: subject,
-        text: "and easy to do anywhere, even with Node.js",
+        text: "You have to check the html version...",
         html: cont,
     };
     sgMail.send(msg);
